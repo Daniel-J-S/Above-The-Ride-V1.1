@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage } from 'gatsby-plugin-image';
 import Seo from '../components/seo';
 import Banner from '../components/banner';
 import StarRatingComponent from 'react-star-rating-component';
@@ -13,25 +13,25 @@ function IndexPost ({ data, linkData }) {
     return (
       <React.Fragment>
         <div className="row product-main">
-          {data.map(items => {
-            const {5: minPrice, 4: maxPrice }  = processSizeAndPrice(items.node.sizesAndPrices);
+          {data.map(({ node }) => {
+            const {5: minPrice, 4: maxPrice }  = processSizeAndPrice(node.sizesAndPrices);
             return (
-            <Link key={items.node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-4" to={`${items.node.slug}`}>
+            <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-4" to={`${node.slug}`}>
             <div>
               <div className="details_List">
-                {/* {items.node.image === null ? <div className="no-image">No Image</div> : <Img fluid={items.node.image.fluid} />} */}
+                {node.image === null ? <div className="no-image">No Image</div> : <GatsbyImage key={node.image.id} image={node.image.gatsbyImageData} alt={node.image.title} />}
                 <div className="details_inner">
                     {
-                      items.node.name.length >= 30 
-                      ? <h2>{items.node.name.split(' ').slice(0, 4).join(' ')}...</h2> 
-                      : <h2>{items.node.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+                      node.name.length >= 30 
+                      ? <h2>{node.name.split(' ').slice(0, 4).join(' ')}...</h2> 
+                      : <h2>{node.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
                     }
                   <StarRatingComponent
                     name="rate1"
                     starCount={5}
-                    value={items.node.rating}
+                    value={node.rating}
                   />
-                  <p>{items.node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
+                  <p>{node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
                   <div className="row">
                     <div className="col-sm-7 align-self-center">
                       <small>{`$${minPrice} - $${maxPrice}`}</small>
@@ -99,6 +99,11 @@ export const query = graphql`
           discount
           category {
             name
+          }
+          image {
+            gatsbyImageData(width: 1000, placeholder: BLURRED, formats: AUTO)
+            title
+            id
           }
           sizesAndPrices
           description {
