@@ -44,7 +44,7 @@ const ClothingDetails = data => {
         location={data.location}
       />
       <div className="container details-page mb-5">
-        <div className="product-details mt-5">
+        <div className="product-details mt-5 pt-3">
           <div className="Product-Screenshot">
             {data.data.contentfulClothing.productMorePhotos === null ? <div className="no-image">No Image</div> :
               <Tabs>

@@ -29,7 +29,7 @@ const Header = ({
       }
   };
 
-  let isProductPage = false;
+  let isProductPage;
 
   
   if(!['/', '/about-us', '/contact-us', '/store'].includes(location.pathname)) {
@@ -42,7 +42,7 @@ const Header = ({
     Object.assign(styles.logoLinkStyles.cart, { cursor: 'pointer', color: '#fff'});
     Object.assign(styles.logoLinkStyles.link, { color: '#fff'});
   } else {
-    isProductPage = true;
+    isProductPage = false;
   }
     
   return (

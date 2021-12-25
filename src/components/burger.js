@@ -15,6 +15,10 @@ const Burger = ({ navOpen, setNavOpen, isPastTop, isProductPage }) => {
        }
     }
 
+    console.log(isProductPage)
+    const productPageStyles = isProductPage 
+    ? { backgroundColor: '#fff' } : {};
+
     return (
         <button 
             className="burger" 
@@ -22,24 +26,27 @@ const Burger = ({ navOpen, setNavOpen, isPastTop, isProductPage }) => {
             >
             <div 
                 style={{
-                    backgroundColor: isProductPage ? '#fff' : isPastTop ? '#000': '#fff',
+                    backgroundColor: isPastTop ? '#000': '#fff',
                     margin: navOpen ? 0 : '.35rem',
                     transform: navOpen ? 'rotate(45deg)' : 'rotate(0)',
+                    ...productPageStyles
                 }} 
             />
             <div 
                 style={{
-                    backgroundColor: isProductPage ? '#fff' : isPastTop ? '#000': '#fff',
+                    backgroundColor: isPastTop ? '#000': '#fff',
                     margin: navOpen ? 0 : '.35rem',
                     transform: navOpen ? 'translateX(20px)' : 'translateX(0)',
-                    opacity: navOpen ? 0 : 1
+                    opacity: navOpen ? 0 : 1,
+                    ...productPageStyles
                 }} 
             />
             <div 
                 style={{
-                    backgroundColor: isProductPage ? '#fff' : isPastTop ? '#000': '#fff',
+                    backgroundColor: isPastTop ? '#000': '#fff',
                     margin: navOpen ? 0 : '.35rem',
                     transform: navOpen ? 'rotate(-45deg)' : 'rotate(0)',
+                    ...productPageStyles
                 }} 
                 />
         </button>
