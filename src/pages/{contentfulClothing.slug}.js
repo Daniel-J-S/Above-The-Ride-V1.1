@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import StarRating from '../components/starRating';
+import Banner from '../components/banner';
 import { graphql, Link } from 'gatsby';
 import Seo from '../components/seo';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
@@ -43,8 +44,9 @@ const ClothingDetails = data => {
         description={`Check out our ${data.data.contentfulClothing.name} currently starting at $${minPrice}`}
         location={data.location}
       />
-      <div className="container details-page mb-5">
-        <div className="product-details mt-5 pt-3">
+      <Banner isIndex={false} bannerData={data.data.contentfulHeaderBanner} productName={data.data.contentfulClothing.name} />
+      <div className="container details-page">
+        <div className="product-details">
           <div className="Product-Screenshot">
             {data.data.contentfulClothing.productMorePhotos === null ? <div className="no-image">No Image</div> :
               <Tabs>
