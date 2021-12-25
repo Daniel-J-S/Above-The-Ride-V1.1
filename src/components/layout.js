@@ -15,7 +15,8 @@ import Footer from './footer';
 
 
 const Layout = ({
-    children
+    children,
+    location
   }) => {
     const [isSmallerScreen, setIsSmallerScreen] = useState(false);
     const [isNavVisible, setNavVisibility] = useState(false);
@@ -27,7 +28,6 @@ const Layout = ({
     const itemsCount = useRef();
     const handleWheelCallback = useRef();
     const handleScrollCallback = useRef();
-  
 
     const handleMutations = function (mutations) {
       mutations.forEach(function (mutation) {
@@ -148,6 +148,7 @@ const Layout = ({
             setNavOpen={setNavOpen}
             itemsCount={itemsCount}
             isPastTop={isPastTop}
+            location={location}
           />
           <div className="main-container" style={{
               opacity: navOpen ? '.2' : '1',

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import StarRatingComponent from 'react-star-rating-component';
+import StarRating from '../components/starRating';
 import { graphql, Link } from 'gatsby';
 import Seo from '../components/seo';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 const ClothingDetails = data => {
   const [
@@ -31,7 +32,7 @@ const ClothingDetails = data => {
       sizeAndPriceStr: getSizePriceStr(e.target.value)
     }));
   }
-
+  const image = getImage(data.data.contentfulClothing.image);
   const { slug } = data.data.contentfulClothing;
   const url = `https://wilsonbikergear.com/.netlify/functions/checkout?id=${slug}&price=${lookup[selectState.value]}&weight=${selectState.userSelection ? weightCodes[selectState.value] : 2}`
   return (
@@ -43,29 +44,27 @@ const ClothingDetails = data => {
         location={data.location}
       />
       <div className="container details-page mb-5">
-        <div className="product-details">
-          <div className="Product-Screenshot">
+        <div className="product-details mt-5">
+          <div className="Product-Screenshot pt-5">
             {data.data.contentfulClothing.productMorePhotos === null ? <div className="no-image">No Image</div> :
               <Tabs>
-                {/* {data.data.contentfulClothing.productMorePhotos.map(items => (
-                  <TabPanel key={items.id}>
-                    <Tab><img src={items.fixed.src} alt={items.id}/></Tab>
+                {data.data.contentfulClothing.productMorePhotos.map(image => (
+                  <TabPanel key={image.id}>
+                    <Tab><GatsbyImage key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
                   </TabPanel>
                 ))}
                 <TabList>
-                  {data.data.contentfulClothing.productMorePhotos.map(items => (
-                    <Tab key={items.id}><img src={items.fixed.src} alt={items.id}/></Tab>
+                  {data.data.contentfulClothing.productMorePhotos.map(image => (
+                    <Tab key={image.id}><GatsbyImage style={{ height: 150, width: 150 }} key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
                   ))}
-                </TabList> */}
+                </TabList>
               </Tabs>}
           </div>
           <div>
             <h2>{data.data.contentfulClothing.name}</h2>
           </div>
-          <StarRatingComponent
-            name="rate1"
-            starCount={5}
-            value={data.data.contentfulClothing.rating}
+          <StarRating
+            rating={data.data.contentfulClothing.rating}
           />
           <div className="row buynowinner">
             <div className="col-sm-4 col-md-3">
@@ -86,7 +85,7 @@ const ClothingDetails = data => {
                   style={{opacity: !selectState.userSelection ? .5: 1}}
                   className="Product snipcart-add-item"
                   data-item-id={data.data.contentfulClothing.slug}
-                  // data-item-image={data.data.contentfulClothing.image === null ? "" : data.data.contentfulClothing.image.fixed.src}
+                  data-item-image={image === undefined ? "" : image.images.fallback.src}
                   data-item-price={selectState.userSelection ? lookup[selectState.value] : minPrice}
                   data-item-custom1-name="Size"
                   data-item-custom1-options={selectState.sizeAndPriceStr}
@@ -115,11 +114,11 @@ const ClothingDetails = data => {
             </div>
              
           </div>
-          {/* <div
+          <div
             dangerouslySetInnerHTML={{
               __html: data.data.contentfulClothing.description.childMarkdownRemark.html
             }}
-          /> */}
+          />
         </div>
       </div>
     </>
@@ -129,12 +128,39 @@ const ClothingDetails = data => {
 export default ClothingDetails;
 
 export const query = graphql`
-  query clothingDetailsWuery($slug: String!) {
+  query clothingDetailsQuery($slug: String!) {
+    contentfulHeaderBanner(page: {eq: "product"}) {
+      subHeading
+      buttonLink
+      title
+      images {
+        gatsbyImageData(width: 1800, placeholder: BLURRED, formats: AUTO)
+        title
+        id
+      }
+    }
     contentfulClothing(slug: {eq: $slug }) {
       id
       name
       slug
       discount
+      sizesAndPrices
+      image {
+        gatsbyImageData(width: 1120, placeholder: BLURRED, formats: AUTO)
+        title
+        id
+      }
+      productMorePhotos {
+        gatsbyImageData(width: 1120, placeholder: BLURRED, formats: AUTO)
+        title
+        id
+      }
+      rating
+      description {
+        childMarkdownRemark {
+          html
+        }
+      }
     }
   }
 `;

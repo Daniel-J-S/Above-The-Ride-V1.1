@@ -13,19 +13,39 @@ const Header = ({
     isSmallerScreen,
     itemsCount,
     showItemsCount,
-    isPastTop
+    isPastTop,
   }) => {
+  
+  const styles = { 
+      headerStyles: {
+        backgroundColor: isPastTop ? '#f7f4f4': navOpen ? '#000000' : 'transparent', 
+        borderBottom: isPastTop ? '1px solid #808080': 'none',
+        boxShadow: isPastTop ? '1px 1px 10px 1px #333': 'none',
+      },
+      logoLinkStyles: {
+        logo: { filter: isPastTop ? 'invert(1)': 'invert(0)'},
+        cart: {cursor: 'pointer', color: isPastTop ? '#000': '#fff'},
+        link: { color: isPastTop ? '#000': '#fff'}
+      }
+  };
+
+  
+  if(!['/', 'about-us', 'contact-us', 'store'].includes(location.pathname)) {
+    Object.assign(styles.headerStyles, {
+      backgroundColor: '#000000', 
+      borderBottom: '1px solid #808080',
+      boxShadow: '1px 1px 10px 1px #333',
+    });
+    Object.assign(styles.logoLinkStyles.logo, { filter: 'invert(0)'});
+    Object.assign(styles.logoLinkStyles.cart, { cursor: 'pointer', color: '#fff'});
+    Object.assign(styles.logoLinkStyles.link, { color: '#fff'});
+  }
+    
   return (
     <>
     <header
-      key={isPastTop} 
       className="site-header" 
-      style={{ 
-        backgroundColor: isPastTop ? '#f7f4f4': 
-        navOpen ? '#000000' : 'transparent', 
-        borderBottom: isPastTop ? '1px solid #808080': 'none',
-        boxShadow: isPastTop ? '1px 1px 10px 1px #333': 'none',
-      }}
+      style={styles.headerStyles}
       >
       <section style={{ justifyContent: isSmallScreen ? 'flex-start': 'center'}}>
       {
@@ -38,25 +58,25 @@ const Header = ({
           />
           :
           <nav>
-            <Link style={{ color: isPastTop ? '#000': '#fff'}} to="/about-us">About</Link>
-            <Link style={{ color: isPastTop ? '#000': '#fff'}} to="/contact-us">Contact</Link>
+            <Link style={styles.logoLinkStyles.link} to="/about-us">About</Link>
+            <Link style={styles.logoLinkStyles.link} to="/contact-us">Contact</Link>
           </nav>
       }
       </section>
       <section>
-        <Link className="header-logo" to="/"><img style={{ filter: isPastTop ? 'invert(1)': 'invert(0)'}} src={logo} alt="logo"></img></Link>
+        <Link className="header-logo" to="/"><img style={styles.logoLinkStyles.logo} src={logo} alt="logo"></img></Link>
       </section>
       <section>
         {
           !isSmallScreen &&
           <nav>
-            <Link style={{ color: isPastTop ? '#000': '#fff'}} to="/store">Store</Link>
+            <Link style={styles.logoLinkStyles.link} to="/store">Store</Link>
           </nav>
         }
         <div className="header-cart">
         <span className="Header__summary snipcart-summary snipcart-checkout">
           <div style={{visibility: showItemsCount ? 'visible' : 'hidden'}} ref={itemsCount} className="snipcart-items-count" />
-          <i style={{cursor: 'pointer', color: isPastTop ? '#000': '#fff'}} className="fas fa-sm fa-shopping-bag" />
+          <i style={styles.logoLinkStyles.cart} className="fas fa-sm fa-shopping-bag" />
         </span>
       </div>
       </section>

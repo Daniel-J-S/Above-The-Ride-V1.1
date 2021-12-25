@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 
 
 
-export default function Banner ({ bannerData, isIndex }) {
+export default function Banner ({ bannerData, isIndex, customTitle }) {
 
     const settings = {
       dots: false,
@@ -27,7 +27,7 @@ export default function Banner ({ bannerData, isIndex }) {
                 ))}
                 <div style={{textAlign: !isIndex && 'center'}} className="Banner-details">
                   <div>
-                    <h1 style={{textAlign: !isIndex && 'center'}}>{bannerData.title}</h1>
+                    <h1 style={{textAlign: !isIndex && 'center'}}>{customTitle ? customTitle : bannerData.title}</h1>
                     {
                       isIndex &&
                       <Link to="/store">{bannerData.buttonLink}</Link>

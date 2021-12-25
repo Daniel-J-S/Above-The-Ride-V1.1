@@ -52,6 +52,11 @@ query AboutPageQuery {
         title
         subHeading
         buttonLink
+        images {
+            gatsbyImageData(width: 1800, placeholder: BLURRED, formats: AUTO)
+            title
+            id
+        }
     }
 }`;
 
