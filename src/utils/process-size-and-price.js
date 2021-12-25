@@ -1,5 +1,4 @@
 export function processSizeAndPrice(data) {
-    data = []
     const prices = data.map(d => Number(d.split(' ')[1]));
     const sizes = data.map(d => d.split(' ')[0]);
     const maxPrice = Math.max(...prices);
