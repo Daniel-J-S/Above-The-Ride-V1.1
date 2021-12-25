@@ -29,16 +29,20 @@ const Header = ({
       }
   };
 
+  let isProductPage = false;
+
   
-  if(!['/', 'about-us', 'contact-us', 'store'].includes(location.pathname)) {
+  if(!['/', '/about-us', '/contact-us', '/store'].includes(location.pathname)) {
+    isProductPage = true;
     Object.assign(styles.headerStyles, {
       backgroundColor: '#000000', 
-      borderBottom: '1px solid #808080',
-      boxShadow: '1px 1px 10px 1px #333',
+      borderBottom: 'none',
     });
     Object.assign(styles.logoLinkStyles.logo, { filter: 'invert(0)'});
     Object.assign(styles.logoLinkStyles.cart, { cursor: 'pointer', color: '#fff'});
     Object.assign(styles.logoLinkStyles.link, { color: '#fff'});
+  } else {
+    isProductPage = true;
   }
     
   return (
@@ -55,6 +59,7 @@ const Header = ({
             setNavOpen={setNavOpen} 
             isSmallScreen={isSmallScreen} 
             isPastTop={isPastTop}
+            isProductPage={isProductPage}
           />
           :
           <nav>

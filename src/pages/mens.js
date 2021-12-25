@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
-// import Img from 'gatsby-image';
 import Seo from '../components/seo';
-import StarRatingComponent from 'react-star-rating-component';
+import StarRating from '../components/starRating';
 import { graphql } from 'gatsby';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
 
@@ -51,10 +50,8 @@ class IndexPost extends React.Component {
                     ? <h2>{items.node.name.split(' ').slice(0, 4).join(' ')}...</h2> 
                     : <h2>{items.node.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
                   }
-                <StarRatingComponent
-                  name="rate1"
-                  starCount={5}
-                  value={items.node.rating}
+                <StarRating
+                  rating={items.node.rating}
                 />
                 <p>{items.node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
                 <div className="row">

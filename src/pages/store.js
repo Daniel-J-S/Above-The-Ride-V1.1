@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Seo from '../components/seo';
 import Banner from '../components/banner';
-import StarRatingComponent from 'react-star-rating-component';
+import StarRating from '../components/starRating';
 import { graphql } from 'gatsby';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
 
@@ -52,10 +52,8 @@ class IndexPost extends React.Component {
                     ? <h2>{node.name.split(' ').slice(0, 4).join(' ')}...</h2> 
                     : <h2>{node.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
                   }
-                <StarRatingComponent
-                  name="rate1"
-                  starCount={5}
-                  value={node.rating}
+                <StarRating
+                  rating={node.rating}
                 />
                 <p>{node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
                 <div className="row">
