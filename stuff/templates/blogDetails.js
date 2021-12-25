@@ -1,0 +1,71 @@
+import React from 'react';
+// import Img from 'gatsby-image';
+import { DiscussionEmbed } from 'disqus-react';
+import Seo from '../components/seo';
+import { graphql } from 'gatsby';
+
+const disqusShortname = 'wilsonbikergear';
+
+const BlogDetails = data => (
+    <>
+        <Seo 
+            title={data.data.contentfulBlogs.title} 
+            keywords={[`vests`, `jackets`, `biker gear`, `mens`, `womens`]} 
+            description={`Check out our latest post titled: ${data.data.contentfulBlogs.title}`}
+            location={data.location}
+        />
+        <div className="blogs-page">
+            <div className="post-thumbnail">
+                {/* <Img fluid={data.data.contentfulBlogs.featureImage.fluid} /> */}
+            </div>
+            <div className="container">
+                <div className="post-details">
+                    <h2 className="title">{data.data.contentfulBlogs.title}</h2>
+                    <div className="post-date">
+                        <i className="fas fa-calendar-alt"></i>
+                        {data.data.contentfulBlogs.publicData}
+                    </div>
+                    <div className="author">
+                        {/* <Img fixed={data.data.contentfulBlogs.author.photo.fixed} /> */}
+                        <strong className="name">{data.data.contentfulBlogs.author.name}</strong>
+                    </div>
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: data.data.contentfulBlogs.description.childMarkdownRemark.html
+                        }}
+                    />
+
+                </div>
+                <DiscussionEmbed
+                    shortname={disqusShortname}
+                    config={{
+                        identifier: data.data.contentfulBlogs.id,
+                        title: data.data.contentfulBlogs.title
+                    }}
+                />
+            </div>
+        </div>
+    </>
+);
+
+export default BlogDetails;
+
+export const query = graphql`
+  query BlogDetailsQuery($slug: String!) {
+        contentfulBlogs(slug: {eq: $slug }) {
+            id
+            title
+            slug
+            publicData(formatString: "MMMM D, YYYY")
+            author {
+                name
+            }
+            description {
+                childMarkdownRemark {
+                    html
+                    excerpt(pruneLength: 250)
+                }
+            }
+        }
+    }
+`;
