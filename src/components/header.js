@@ -23,7 +23,7 @@ const Header = ({
         boxShadow: isPastTop ? '1px 1px 10px 1px #333': 'none',
       },
       logoLinkStyles: {
-        logo: { filter: isPastTop ? 'invert(1)': 'invert(0)'},
+        logo: { filter: isPastTop ? 'invert(1)': 'drop-shadow(0 0 0.85rem #000)'},
         cart: {cursor: 'pointer', color: isPastTop ? '#000': '#fff'},
         link: { color: isPastTop ? '#000': '#fff'}
       }
