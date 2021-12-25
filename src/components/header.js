@@ -63,8 +63,8 @@ const Header = ({
           />
           :
           <nav>
-            <Link style={styles.logoLinkStyles.link} to="/about-us">About</Link>
-            <Link style={styles.logoLinkStyles.link} to="/contact-us">Contact</Link>
+            <Link activeStyle={{textDecoration: 'underline'}} style={styles.logoLinkStyles.link} to="/about-us">About</Link>
+            <Link activeStyle={{textDecoration: 'underline'}} style={styles.logoLinkStyles.link} to="/contact-us">Contact</Link>
           </nav>
       }
       </section>
@@ -75,7 +75,7 @@ const Header = ({
         {
           !isSmallScreen &&
           <nav>
-            <Link style={styles.logoLinkStyles.link} to="/store">Store</Link>
+            <Link activeStyle={{textDecoration: 'underline'}} style={styles.logoLinkStyles.link} to="/store">Store</Link>
           </nav>
         }
         <div className="header-cart">
