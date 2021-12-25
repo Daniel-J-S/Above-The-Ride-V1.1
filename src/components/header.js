@@ -30,7 +30,6 @@ const Header = ({
   };
 
   let isProductPage;
-
   
   if(!['/', '/about-us', '/contact-us', '/store'].includes(location.pathname)) {
     isProductPage = true;
