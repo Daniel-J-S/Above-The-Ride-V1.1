@@ -45,7 +45,7 @@ const ClothingDetails = data => {
       />
       <div className="container details-page mb-5">
         <div className="product-details mt-5">
-          <div className="Product-Screenshot pt-5">
+          <div className="Product-Screenshot">
             {data.data.contentfulClothing.productMorePhotos === null ? <div className="no-image">No Image</div> :
               <Tabs>
                 {data.data.contentfulClothing.productMorePhotos.map(image => (
