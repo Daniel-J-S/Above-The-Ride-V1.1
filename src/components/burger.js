@@ -15,7 +15,6 @@ const Burger = ({ navOpen, setNavOpen, isPastTop, isProductPage }) => {
        }
     }
 
-    console.log(isProductPage)
     const productPageStyles = isProductPage 
     ? { backgroundColor: '#fff' } : {};
 
