@@ -23,7 +23,7 @@ export default function Banner ({ bannerData, isIndex, customTitle }) {
             <div className="item">
               <div className="site-Banner">
                 {bannerData.images.map( image => (
-                  <GatsbyImage loading="eager" key={image.id} image={image.gatsbyImageData} alt={image.title} />
+                  <GatsbyImage key={image.id} image={image.gatsbyImageData} alt={image.title} />
                 ))}
                 <div style={{textAlign: !isIndex && 'center'}} className="Banner-details">
                   <div>
