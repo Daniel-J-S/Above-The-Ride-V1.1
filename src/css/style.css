@@ -1084,11 +1084,12 @@ span.price {
 .slick-slider .slick-list div img {
   width: 100%;
   margin: 0;
+  animation: fadeIn 900ms linear forwards;
 }
 
 .slick-slider .slick-list .site-Banner:before {
   content: "";
-  background: #0000004a;
+  background: #1c1a1a4a;
   position: absolute;
   top: 0;
   left: 0;
@@ -1096,7 +1097,8 @@ span.price {
   right: 0;
   width: 100%;
   z-index: 1;
-  height: calc(100% - 10px);
+  height: 100%;
+  animation: fadeIn 900ms linear forwards;
 }
 
 .site-Banner .Banner-details .sub-title {
