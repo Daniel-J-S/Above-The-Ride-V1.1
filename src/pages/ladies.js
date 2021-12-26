@@ -107,6 +107,11 @@ export const query = graphql`
               excerpt(pruneLength: 140)
             }
           }
+          image {
+            gatsbyImageData(width: 1000, placeholder: BLURRED, formats: AUTO)
+            title
+            id
+        }
       }
     }
   }
