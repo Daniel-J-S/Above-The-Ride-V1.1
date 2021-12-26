@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'gatsby';
 import Seo from '../components/seo';
 import StarRating from '../components/starRating';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { graphql } from 'gatsby';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
 
-class IndexPost extends React.Component {
+class ClothingPost extends React.Component {
     state = {
       NoOfPost: 6
   };
@@ -35,25 +36,25 @@ class IndexPost extends React.Component {
     const { NoOfPost } = this.state;
 
     return (
-      <React.Fragment>
+      <>
       <div className="row product-main">
-        {data.data.allContentfulClothing.edges.slice(0, NoOfPost).map(items => {
-          const {5: minPrice, 4: maxPrice }  = processSizeAndPrice(items.node.sizesAndPrices);
+        {data.data.allContentfulClothing.edges.slice(0, NoOfPost).map(({ node }) => {
+          const {5: minPrice, 4: maxPrice }  = processSizeAndPrice(node.sizesAndPrices);
           return (
-          <Link key={items.node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-4" to={`/${items.node.slug}`}>
+          <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-4" to={`/${node.slug}`}>
           <div>
             <div className="details_List">
-              {/* {items.node.image === null ? <div className="no-image">No Image</div> : <Img sizes={items.node.image.fixed} />} */}
+              {node.image === null ? <div className="no-image">No Image</div> : <GatsbyImage key={node.image.id} image={node.image.gatsbyImageData} alt={node.image.title} />}
               <div className="details_inner">
                   {
-                    items.node.name.length >= 30 
-                    ? <h2>{items.node.name.split(' ').slice(0, 4).join(' ')}...</h2> 
-                    : <h2>{items.node.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+                    node.name.length >= 30 
+                    ? <h2>{node.name.split(' ').slice(0, 4).join(' ')}...</h2> 
+                    : <h2>{node.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
                   }
                 <StarRating
-                  rating={items.node.rating}
+                  rating={node.rating}
                 />
-                <p>{items.node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
+                <p>{node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
                 <div className="row">
                   <div className="col-sm-7 align-self-center">
                     <small>{`$${minPrice} - $${maxPrice}`}</small>
@@ -65,12 +66,12 @@ class IndexPost extends React.Component {
           </Link>
       )})}
       </div>
-    </React.Fragment>
+    </>
     );
   }
 }
 
-const IndexPage = data => (
+const MensClothingPage = data => (
 
   <>
     <Seo 
@@ -83,12 +84,12 @@ const IndexPage = data => (
       <div className="text-center mt-5">
           <h1 className="with-underline">Mens Apparel</h1>
       </div>
-      <IndexPost data={data}></IndexPost>
+      <ClothingPost data={data}></ClothingPost>
     </div>
   </>
 );
 
-export default IndexPage;
+export default MensClothingPage;
 
 export const query = graphql`
   query MensQuery {

@@ -127,16 +127,6 @@ export default ClothingDetails;
 
 export const query = graphql`
   query clothingDetailsQuery($slug: String!) {
-    contentfulHeaderBanner(page: {eq: "product"}) {
-      subHeading
-      buttonLink
-      title
-      images {
-        gatsbyImageData(width: 1800, placeholder: BLURRED, formats: AUTO)
-        title
-        id
-      }
-    }
     contentfulClothing(slug: {eq: $slug }) {
       id
       name
@@ -158,6 +148,16 @@ export const query = graphql`
         childMarkdownRemark {
           html
         }
+      }
+    }
+    contentfulHeaderBanner(page: {eq: "product"}) {
+      subHeading
+      buttonLink
+      title
+      images {
+        gatsbyImageData(width: 1800, placeholder: BLURRED, formats: AUTO)
+        title
+        id
       }
     }
   }

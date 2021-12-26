@@ -37,7 +37,7 @@ class IndexPost extends React.Component {
     const { NoOfPost } = this.state;
 
     return (
-      <React.Fragment>
+      <>
       <div className="row product-main">
         {clothing.edges.slice(0, NoOfPost).map(({ node }) => {
           const {5: minPrice, 4: maxPrice }  = processSizeAndPrice(node.sizesAndPrices);
@@ -67,7 +67,7 @@ class IndexPost extends React.Component {
           </Link>
       )})}
       </div>
-    </React.Fragment>
+    </>
     );
   }
 }

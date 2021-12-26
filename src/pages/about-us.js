@@ -3,7 +3,7 @@ import Seo from '../components/seo';
 import Banner from '../components/banner';
 import { graphql } from 'gatsby';
 
-function About({
+function AboutUs({
         data: {
             aboutUs,
             bannerData
@@ -60,5 +60,5 @@ query AboutPageQuery {
     }
 }`;
 
-export default About;
+export default AboutUs;
 

@@ -4,7 +4,7 @@ import Form from '../components/form';
 import Banner from '../components/banner';
 import Seo from '../components/seo';
 
-function Contact ({ location, data }) {
+function ContactUs ({ location, data }) {
     function getItemDetails() {
         if(location.state && location.state.itemName && location.state.itemPrice) {
             const {itemName, itemPrice, itemSize} = location.state
@@ -49,4 +49,4 @@ export const query = graphql`
 `;
 
 
-export default Contact;
+export default ContactUs;

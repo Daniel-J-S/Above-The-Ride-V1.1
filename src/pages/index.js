@@ -10,12 +10,12 @@ import { processSizeAndPrice } from '../utils/process-size-and-price';
 
 function IndexPost ({ data, linkData }) {
     return (
-      <React.Fragment>
+      <>
         <div className="row product-main mb-5 container">
           {data.map(({ node }) => {
             const {5: minPrice }  = processSizeAndPrice(node.sizesAndPrices);
             return (
-            <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-3" to={`${node.slug}`}>
+            <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-3" to={`/${node.slug}`}>
             <div>
               <div className="details_List">
                 {node.image === null ? <div className="no-image">No Image</div> : <GatsbyImage key={node.image.id} image={node.image.gatsbyImageData} alt={node.image.title} />}
@@ -37,7 +37,7 @@ function IndexPost ({ data, linkData }) {
         )})}
         </div>
        <Link className="text-dark" to={`/${linkData}`}>See More <i className="fa fa-arrow-right"></i></Link>
-      </React.Fragment>
+      </>
     );
 }
 
