@@ -1060,7 +1060,7 @@ span.price {
 .slick-slider .slick-list div img {
   width: 100%;
   margin: 0;
-  animation: fadeIn 900ms linear forwards;
+  animation: fadeIn 1.2s linear forwards;
 }
 
 .slick-slider .slick-list .site-Banner:before {

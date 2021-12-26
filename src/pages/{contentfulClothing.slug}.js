@@ -65,20 +65,17 @@ const ClothingDetails = data => {
                 </Tabs>}
               </div>
             </div>
-            <div className="col-md-6">
+          <div className="col-md-6 container">
             <div>
-            <h2>{data.data.contentfulClothing.name}</h2>
-          </div>
-          <StarRating
-            rating={data.data.contentfulClothing.rating}
-          />
-          <div className="row buynowinner">
-            <div className="col-sm-4 col-md-3">
-              <span className="price"><small>${minPrice}</small></span>
-              
-            </div>
-
-              
+              <h2>{data.data.contentfulClothing.name}</h2>
+             </div>
+              <StarRating
+                rating={data.data.contentfulClothing.rating}
+              />
+              <div className="row buynowinner">
+                <div className="col-sm-4 col-md-3">
+                  <span className="price"><small>${minPrice}</small></span>
+                </div>
               <div className="col-sm-12 col-md-12 text-left">
                 <p style={{fontStyle: 'italic', fontSize: '.8rem'}} className="mt-2 mb-4">Shipping costs may vary based on volume</p>
                 <div className="row container mb-3">

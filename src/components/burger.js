@@ -9,7 +9,7 @@ const Burger = ({ navOpen, setNavOpen, isPastTop }) => {
         if(isPastTop) {
            setTimeout(() => {
                setNavOpen(!navOpen);
-           }, 1200)
+           }, 900)
        } else {
            setNavOpen(!navOpen);
        }
