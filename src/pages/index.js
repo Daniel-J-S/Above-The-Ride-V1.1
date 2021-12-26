@@ -3,7 +3,6 @@ import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Seo from '../components/seo';
 import Banner from '../components/banner';
-import StarRating from '../components/starRating';
 import { graphql } from 'gatsby';
 import { productFilter } from '../utils/product-filter';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
@@ -12,11 +11,11 @@ import { processSizeAndPrice } from '../utils/process-size-and-price';
 function IndexPost ({ data, linkData }) {
     return (
       <React.Fragment>
-        <div className="row product-main">
+        <div className="row product-main mb-5 container">
           {data.map(({ node }) => {
-            const {5: minPrice, 4: maxPrice }  = processSizeAndPrice(node.sizesAndPrices);
+            const {5: minPrice }  = processSizeAndPrice(node.sizesAndPrices);
             return (
-            <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-4" to={`${node.slug}`}>
+            <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-3" to={`${node.slug}`}>
             <div>
               <div className="details_List">
                 {node.image === null ? <div className="no-image">No Image</div> : <GatsbyImage key={node.image.id} image={node.image.gatsbyImageData} alt={node.image.title} />}
@@ -26,13 +25,9 @@ function IndexPost ({ data, linkData }) {
                       ? <h2>{node.name.split(' ').slice(0, 4).join(' ')}...</h2> 
                       : <h2>{node.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
                     }
-                  <StarRating
-                    rating={node.rating}
-                  />
-                  <p>{node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
                   <div className="row">
                     <div className="col-sm-7 align-self-center">
-                      <small>{`$${minPrice} - $${maxPrice}`}</small>
+                      <small style={{fontSize: '.7rem'}}>${minPrice}</small>
                     </div>
                   </div>
                 </div>
@@ -60,7 +55,7 @@ const IndexPage = data => {
       {
         mens.length > 0 &&
         <div className="container mt-5 mb-5">
-          <div>
+          <div className="mb-5">
             <Link className="text-dark" to="/mens">
               <h3 className="text-center text-md-left">Mens Apparel</h3>
             </Link>
@@ -115,15 +110,6 @@ export const query = graphql`
     contentfulDealCountDown {
       title
       date(formatString: "D MMMM, YYYY")
-    }
-    allContentfulBlogs(limit: 3,sort:{fields:createdAt,order: DESC}) {
-      edges {
-        node {
-          id
-          title
-          slug
-        }
-      }
     }
   }
 `;
