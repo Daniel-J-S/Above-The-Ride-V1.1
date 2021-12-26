@@ -24,9 +24,15 @@ class Footer extends Component {
                         <div className="footer-bottom social-right-menu mt-3">
                             <div className="site-info">
                                 <ul className="social-links">
-                                    <li>
+                                    <li> 
+                                        {/* TODO: need to add  */}
                                         <a className="social-icon" href="https://www.facebook.com/JDUBORIGINAL/" target="_blank" rel="noopener noreferrer">
                                             <i className="fab fa-2x fa-facebook" />
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a className="social-icon" href="https://www.instagram.com/abovetheride/" target="_blank" rel="noopener noreferrer">
+                                            <i className="fab fa-2x fa-instagram" />
                                         </a>
                                     </li>
                                     <li>

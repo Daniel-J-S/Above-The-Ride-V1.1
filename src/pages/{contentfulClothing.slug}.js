@@ -47,22 +47,26 @@ const ClothingDetails = data => {
       <Banner isIndex={false} bannerData={data.data.contentfulHeaderBanner} productName={data.data.contentfulClothing.name} />
       <div className="container details-page">
         <div className="product-details">
-          <div className="Product-Screenshot">
-            {data.data.contentfulClothing.productMorePhotos === null ? <div className="no-image">No Image</div> :
-              <Tabs>
-                {data.data.contentfulClothing.productMorePhotos.map(image => (
-                  <TabPanel key={image.id}>
-                    <Tab><GatsbyImage key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
-                  </TabPanel>
-                ))}
-                <TabList>
+          <div className="row">
+            <div className="col-md-6">
+              <div className="Product-Screenshot">
+              {data.data.contentfulClothing.productMorePhotos === null ? <div className="no-image">No Image</div> :
+                <Tabs>
                   {data.data.contentfulClothing.productMorePhotos.map(image => (
-                    <Tab key={image.id}><GatsbyImage style={{ height: 150, width: 150 }} key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
+                    <TabPanel key={image.id}>
+                      <Tab><GatsbyImage key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
+                    </TabPanel>
                   ))}
-                </TabList>
-              </Tabs>}
-          </div>
-          <div>
+                  <TabList>
+                    {data.data.contentfulClothing.productMorePhotos.map(image => (
+                      <Tab key={image.id}><GatsbyImage style={{ height: 150, width: 150 }} key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
+                    ))}
+                  </TabList>
+                </Tabs>}
+              </div>
+            </div>
+            <div className="col-md-6">
+            <div>
             <h2>{data.data.contentfulClothing.name}</h2>
           </div>
           <StarRating
@@ -70,13 +74,8 @@ const ClothingDetails = data => {
           />
           <div className="row buynowinner">
             <div className="col-sm-4 col-md-3">
-              <span className="price">{selectState.userSelection ? `$${lookup[selectState.value]}` : <small style={{fontSize: '.8rem'}}>{`$${minPrice} - $${maxPrice}`}</small>}</span>
-              <select value={selectState.value} style={{padding: '.3rem', borderRadius: '7px'}} onChange={handleChange} onBlur={handleChange} className="form-select form-select-lg mb-3 mt-3">
-                {!selectState.userSelection && <option value="Choose Size">Choose Size</option> }
-                {sizes.map((s, i) => (
-                  <option key={i} value={s}>{selectState.value === s ? s : `${s} - $${prices[i]}`}</option>
-                ))}
-              </select>
+              <span className="price"><small>${minPrice}</small></span>
+              
             </div>
 
               
@@ -85,7 +84,7 @@ const ClothingDetails = data => {
                 <div className="row container mb-3">
                 <button
                   style={{opacity: !selectState.userSelection ? .5: 1}}
-                  className="Product snipcart-add-item"
+                  className="Product snipcart-add-item btn-danger"
                   data-item-id={data.data.contentfulClothing.slug}
                   data-item-image={image === undefined ? "" : image.images.fallback.src}
                   data-item-price={selectState.userSelection ? lookup[selectState.value] : minPrice}
@@ -93,7 +92,6 @@ const ClothingDetails = data => {
                   data-item-custom1-options={selectState.sizeAndPriceStr}
                   data-item-name={data.data.contentfulClothing.name}
                   data-item-url={url}
-                  disabled={!selectState.userSelection}
                   data-item-weight={selectState.userSelection ? weightCodes[selectState.value] : 2}
                   >
                   <i className="fas fa-tags" />
@@ -113,14 +111,15 @@ const ClothingDetails = data => {
                     <Link className="btn btn-primary" to="/contact-us">Contact Us</Link>
                   }
                 </div>
+              </div>  
             </div>
-             
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: data.data.contentfulClothing.description.childMarkdownRemark.html
+                }}
+              />
+            </div>
           </div>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: data.data.contentfulClothing.description.childMarkdownRemark.html
-            }}
-          />
         </div>
       </div>
     </>
