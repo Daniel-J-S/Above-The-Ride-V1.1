@@ -7,7 +7,7 @@ import Seo from '../components/seo';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const ClothingDetails = data => {
+const ClothingDetails = ({ data, location }) => {
   const [
     weightCodes,
     lookup,
@@ -15,81 +15,85 @@ const ClothingDetails = data => {
     sizes,
     maxPrice,
     minPrice,
-    sizeAndPriceStr, getSizePriceStr] = processSizeAndPrice(data.data.contentfulClothing.sizesAndPrices);
+    sizeAndPriceStr, getSizePriceStr] = processSizeAndPrice(data.contentfulClothing.sizesAndPrices);
   
-  const [selectState, setSelectState] = useState({
-    value: 'Choose Size',
-    userSelection: false,
-    sizeAndPriceStr,
-  });
+  const [sizeSelection, setSizeSelection] = useState('Choose Size');
 
 
-  function handleChange(e) {
-    e.persist()
-    setSelectState(prevState => ({
-      ...prevState,
-      value: e.target.value, 
-      userSelection: true,
-      sizeAndPriceStr: getSizePriceStr(e.target.value)
-    }));
+  function handleClick(e) {
+    setSizeSelection(e.target.id);
   }
-  const image = getImage(data.data.contentfulClothing.image);
-  const { slug } = data.data.contentfulClothing;
-  const url = `https://wilsonbikergear.com/.netlify/functions/checkout?id=${slug}&price=${lookup[selectState.value]}&weight=${selectState.userSelection ? weightCodes[selectState.value] : 2}`
+
+  const image = getImage(data.contentfulClothing.image);
+  const { slug } = data.contentfulClothing;
+  const url = `https://wilsonbikergear.com/.netlify/functions/checkout?id=${slug}&price=${lookup[sizeSelection.value]}&weight=${sizeSelection.userSelection ? weightCodes[sizeSelection.value] : 2}`
+  
   return (
     <>
       <Seo 
-        title={data.data.contentfulClothing.name} 
-        keywords={[`Clothing`, `${data.data.contentfulClothing.name}`, `Jackets`, `Vests`]} 
-        description={`Check out our ${data.data.contentfulClothing.name} currently starting at $${minPrice}`}
-        location={data.location}
+        title={data.contentfulClothing.name} 
+        keywords={[`Clothing`, `${data.contentfulClothing.name}`, `Jackets`, `Vests`]} 
+        description={`Check out our ${data.contentfulClothing.name} currently starting at $${minPrice}`}
+        location={location}
       />
-      <Banner isIndex={false} bannerData={data.data.contentfulHeaderBanner} productName={data.data.contentfulClothing.name} />
+      <Banner isIndex={false} bannerData={data.contentfulHeaderBanner} productName={data.contentfulClothing.name} />
       <div className="container details-page">
         <div className="product-details">
           <div className="row">
             <div className="col-md-6">
               <div className="Product-Screenshot">
-              {data.data.contentfulClothing.productMorePhotos === null ? <div className="no-image">No Image</div> :
+              {data.contentfulClothing.productMorePhotos === null ? <div className="no-image">No Image</div> :
                 <Tabs>
-                  {data.data.contentfulClothing.productMorePhotos.map(image => (
+                  {data.contentfulClothing.productMorePhotos.map(image => (
                     <TabPanel key={image.id}>
                       <Tab><GatsbyImage key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
                     </TabPanel>
                   ))}
                   <TabList>
-                    {data.data.contentfulClothing.productMorePhotos.map(image => (
+                    {data.contentfulClothing.productMorePhotos.map(image => (
                       <Tab key={image.id}><GatsbyImage style={{ height: 150, width: 150 }} key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
                     ))}
                   </TabList>
                 </Tabs>}
               </div>
+              <div className="mb-3">
+                <h3>{data.contentfulClothing.rating}.0</h3>
+                <StarRating
+                  rating={data.contentfulClothing.rating}
+                />
+                <h4 className="mt-3">Based on 76 reviews</h4>
             </div>
-          <div className="col-md-6 container">
+            </div>
+          <div className="col-md-6 container mt-3">
             <div>
-              <h2>{data.data.contentfulClothing.name}</h2>
+              <h2>{data.contentfulClothing.name}</h2>
              </div>
-              <StarRating
-                rating={data.data.contentfulClothing.rating}
-              />
               <div className="row buynowinner">
                 <div className="col-sm-4 col-md-3">
                   <span className="price"><small>${minPrice}</small></span>
                 </div>
+              <hr className="mt-3 mb-3" />
+              <small>Size</small>
+              <div className="d-flex justify-content-start mt-3 mb-3">
+                {
+                  sizes.map((s, i ) => (
+                    <button onClick={handleClick} id={s} style={{marginRight: '1rem'}} className={`btn ${sizeSelection === s ? 'btn-primary' : 'btn-default'} border border-dark rounded`} key={i}>{s}</button>
+                  ))
+                }
+              </div>
               <div className="col-sm-12 col-md-12 text-left">
                 <p style={{fontStyle: 'italic', fontSize: '.8rem'}} className="mt-2 mb-4">Shipping costs may vary based on volume</p>
                 <div className="row container mb-3">
                 <button
-                  style={{opacity: !selectState.userSelection ? .5: 1}}
-                  className="Product snipcart-add-item btn-danger"
-                  data-item-id={data.data.contentfulClothing.slug}
+                  className="Product snipcart-add-item btn btn-success w-50"
+                  data-item-id={data.contentfulClothing.slug}
                   data-item-image={image === undefined ? "" : image.images.fallback.src}
-                  data-item-price={selectState.userSelection ? lookup[selectState.value] : minPrice}
+                  data-item-price={sizeSelection !==  'Choose Size' ? lookup[sizeSelection] : minPrice}
                   data-item-custom1-name="Size"
-                  data-item-custom1-options={selectState.sizeAndPriceStr}
-                  data-item-name={data.data.contentfulClothing.name}
+                  data-item-custom1-options={sizeSelection !== 'Choose Size' ? getSizePriceStr(sizeSelection) : sizeAndPriceStr}
+                  data-item-name={data.contentfulClothing.name}
                   data-item-url={url}
-                  data-item-weight={selectState.userSelection ? weightCodes[selectState.value] : 2}
+                  data-item-weight={sizeSelection !==  'Choose Size' ? weightCodes[sizeSelection] : 2}
                   >
                   <i className="fas fa-tags" />
                   Add to Cart
@@ -97,22 +101,27 @@ const ClothingDetails = data => {
                 </div>
                 <div className="row container mt-3">
                   {
-                    selectState.userSelection ?
+                    sizeSelection !==  'Choose Size' ?
                     <Link
                     state={{ 
-                      itemName: data.data.contentfulClothing.name,
-                      itemPrice: lookup[selectState.value],
-                      itemSize: selectState.value
-                    }} className="btn btn-primary" to="/contact-us">Contact Us</Link>
+                      itemName: data.contentfulClothing.name,
+                      itemPrice: lookup[sizeSelection],
+                      itemSize: sizeSelection
+                    }} className="btn btn-default border border-dark w-50" to="/contact-us">
+                      Ask A Question
+                    </Link>
                     :
-                    <Link className="btn btn-primary" to="/contact-us">Contact Us</Link>
+                    <Link className="btn btn-default border border-dark w-50" to="/contact-us">
+                      Contact Us
+                    </Link>
                   }
                 </div>
               </div>  
             </div>
               <div
+                className="mt-5 mb-5"
                 dangerouslySetInnerHTML={{
-                  __html: data.data.contentfulClothing.description.childMarkdownRemark.html
+                  __html: data.contentfulClothing.description.childMarkdownRemark.html
                 }}
               />
             </div>

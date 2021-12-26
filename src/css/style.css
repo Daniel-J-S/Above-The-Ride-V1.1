@@ -1567,7 +1567,8 @@ footer.site-footer ul {
 }
 
 .snipcart-modal__container {
-  padding-top: 5rem !important;
+  z-index: 8 !important;
+  padding-top: 7rem !important;
 }
 
 
