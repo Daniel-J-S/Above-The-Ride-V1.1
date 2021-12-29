@@ -1,4 +1,4 @@
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import React, { useEffect, useState } from 'react';
 import logo from '../images/banner-logo.svg';
 import Burger from './burger';
@@ -16,7 +16,14 @@ const Header = ({
     isPastTop,
   }) => {
 
-  const [isProductPage, setIsProductPage] = useState(true);
+  const [isProductPage, setIsProductPage] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+
+  const handleClick = () => {
+    if(cartOpen && typeof window !== 'undefined') {
+      window.Snipcart.api.theme.cart.close()
+    }
+  }
   
   const styles = { 
       headerStyles: {
@@ -31,7 +38,7 @@ const Header = ({
       }
   };
 
-  if(isProductPage) {
+  if(isProductPage || cartOpen) {
     Object.assign(styles.headerStyles, {
       backgroundColor: '#000000', 
       borderBottom: 'none',
@@ -47,13 +54,19 @@ const Header = ({
   useEffect(() => {
     const condition = ['/', '/contact-us', '/about-us', '/terms-of-service'].includes(location.pathname);
     setIsProductPage(!condition);
-  }, [location])
+  }, [location]);
+
+  useEffect(() => {
+    const condition = ['#/cart'].includes(location.hash);
+    setCartOpen(condition);
+  }, [location.hash]);
 
   return (
     <>
     <header
       className="site-header" 
       style={styles.headerStyles}
+      onClickCapture={handleClick}
       >
       <section style={{ justifyContent: isSmallScreen ? 'flex-start': 'center'}}>
       {
@@ -73,7 +86,7 @@ const Header = ({
       }
       </section>
       <section>
-        <Link className="header-logo" to="/"><img style={styles.logoLinkStyles.logo} src={logo} alt="logo"></img></Link>
+        <Link onClick={() => setNavOpen(false)} className="header-logo" to="/"><img style={styles.logoLinkStyles.logo} src={logo} alt="Above the ride"></img></Link>
       </section>
       <section>
         {
