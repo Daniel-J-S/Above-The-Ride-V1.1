@@ -31,8 +31,8 @@ const navDrawerStyles = {
 
 const links = [
     {
-        slug: '/store',
-        text: 'Store'
+        slug: '/shop',
+        text: 'Shop'
     },
     {
         slug: '/about-us',

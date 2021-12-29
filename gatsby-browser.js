@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from './src/components/layout';
 import './src/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 import './src/css/style.css';
 
 export const onServiceWorkerUpdateReady = () => {

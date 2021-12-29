@@ -72,7 +72,7 @@ class IndexPost extends React.Component {
   }
 }
 
-const IndexPage = ({ location, data: { clothing, bannerData }}) => { 
+const ShopPage = ({ location, data: { clothing, bannerData }}) => { 
   return (
   <>
     <Seo 
@@ -92,10 +92,10 @@ const IndexPage = ({ location, data: { clothing, bannerData }}) => {
   );
 }
 
-export default IndexPage;
+export default ShopPage;
 
 export const query = graphql`
-  query StoreQuery {
+  query ShopQuery {
     clothing: allContentfulClothing {
       edges{
         node{
@@ -118,7 +118,7 @@ export const query = graphql`
       }
     }
   }
-  bannerData: contentfulHeaderBanner(page: {eq: "store"}) {
+  bannerData: contentfulHeaderBanner(page: {eq: "shop"}) {
     title
     subHeading
     buttonLink

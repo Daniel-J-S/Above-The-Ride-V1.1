@@ -59,7 +59,7 @@ const Header = ({
         {
           !isSmallScreen &&
           <nav>
-            <Link activeStyle={{textDecoration: 'underline'}} style={styles.logoLinkStyles.link} to="/store">Store</Link>
+            <Link activeStyle={{textDecoration: 'underline'}} style={styles.logoLinkStyles.link} to="/shop">Shop</Link>
           </nav>
         }
         <div className="header-cart">
