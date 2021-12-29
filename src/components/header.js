@@ -1,5 +1,5 @@
 import { Link } from 'gatsby';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import logo from '../images/banner-logo.svg';
 import Burger from './burger';
 import NavDrawer from './navDrawer';
@@ -29,7 +29,15 @@ const Header = ({
       }
   };
 
-    
+  const pathNameRef = useRef();
+
+  useEffect(() => {
+    pathNameRef.current = window?.location?.pathname;
+  })
+
+  useEffect(() => {
+    console.log(['/', '/contact-us', '/about-us', '/terms-of-service'].includes(pathNameRef.current))
+  })
   return (
     <>
     <header

@@ -36,7 +36,6 @@ const ClothingDetails = ({ data, location }) => {
         description={`Check out our ${data.contentfulClothing.name} currently starting at $${minPrice}`}
         location={location}
       />
-      <Banner isIndex={false} bannerData={data.contentfulHeaderBanner} productName={data.contentfulClothing.name} />
       <div className="container details-page">
         <div className="product-details">
           <div className="row">
@@ -157,16 +156,6 @@ export const query = graphql`
         childMarkdownRemark {
           html
         }
-      }
-    }
-    contentfulHeaderBanner(page: {eq: "product"}) {
-      subHeading
-      buttonLink
-      title
-      images {
-        gatsbyImageData(width: 1800, placeholder: BLURRED, formats: AUTO)
-        title
-        id
       }
     }
   }

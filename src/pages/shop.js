@@ -83,7 +83,7 @@ const ShopPage = ({ location, data: { clothing, bannerData }}) => {
     />
     <Banner isIndex={false} bannerData={bannerData} />
     <div className="container store-page mb-5">
-      <div className="text-left mt-5">
+      <div className="text-center mt-5">
           <h1 className="with-underline">All Apparel</h1>
       </div>
       <IndexPost clothing={clothing}></IndexPost>

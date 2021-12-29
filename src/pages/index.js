@@ -19,18 +19,10 @@ function IndexPost ({ data, linkData }) {
             <div>
               <div className="details_List">
                 {node.image === null ? <div className="no-image">No Image</div> : <GatsbyImage key={node.image.id} image={node.image.gatsbyImageData} alt={node.image.title} />}
-                <div className="details_inner">
-                    {
-                      node.name.length >= 30 
-                      ? <h2>{node.name.split(' ').slice(0, 4).join(' ')}...</h2> 
-                      : <h2>{node.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
-                    }
-                  <div className="row">
-                    <div className="col-sm-7 align-self-center">
-                      <small style={{fontSize: '.7rem'}}>${minPrice}</small>
-                    </div>
-                  </div>
-                </div>
+                <div className="container text-center mt-3 p-2">
+                  <h3>{node.name}</h3>
+                  <h5>${minPrice}</h5>
+                </div>  
               </div>
             </div>
             </Link>
