@@ -30,7 +30,7 @@ export default function Banner ({ bannerData, isIndex, productName }) {
                     <h1 style={{textAlign: !isIndex && 'center'}}>{productName ? productName : bannerData.title}</h1>
                     {
                       isIndex &&
-                      <Link to="/store">{bannerData.buttonLink}</Link>
+                      <Link to="/shop">{bannerData.buttonLink}</Link>
                     }
                   </div>
                 </div>

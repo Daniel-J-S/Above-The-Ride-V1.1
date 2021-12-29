@@ -1,4 +1,4 @@
-import { Link, navigate } from 'gatsby';
+import { Link } from 'gatsby';
 import React, { useEffect, useState } from 'react';
 import logo from '../images/banner-logo.svg';
 import Burger from './burger';
@@ -52,7 +52,7 @@ const Header = ({
   }
 
   useEffect(() => {
-    const condition = ['/', '/contact-us', '/about-us', '/terms-of-service'].includes(location.pathname);
+    const condition = ['/', '/contact-us', '/about-us', '/terms-of-service', '/shop'].includes(location.pathname);
     setIsProductPage(!condition);
   }, [location]);
 
