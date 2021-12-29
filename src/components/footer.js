@@ -25,7 +25,6 @@ class Footer extends Component {
                             <div className="site-info">
                                 <ul className="social-links">
                                     <li> 
-                                        {/* TODO: need to add  */}
                                         <a className="social-icon" href="https://www.facebook.com/JDUBORIGINAL/" target="_blank" rel="noopener noreferrer">
                                             <i className="fab fa-2x fa-facebook" />
                                         </a>
@@ -36,7 +35,7 @@ class Footer extends Component {
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="social-icon" href="https://www.tiktok.com/@wilsonbikergear" target="_blank" rel="noopener noreferrer">                                            
+                                        <a className="social-icon" href="https://www.tiktok.com/@abovetheride" target="_blank" rel="noopener noreferrer">                                            
                                             <img className="tiktok" src={tiktokLogo} alt="tic toc" />
                                         </a>
                                     </li>

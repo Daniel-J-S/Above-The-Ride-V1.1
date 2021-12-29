@@ -1,5 +1,5 @@
 import { Link } from 'gatsby';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../images/banner-logo.svg';
 import Burger from './burger';
 import NavDrawer from './navDrawer';
@@ -15,6 +15,8 @@ const Header = ({
     showItemsCount,
     isPastTop,
   }) => {
+
+  const [isProductPage, setIsProductPage] = useState(true);
   
   const styles = { 
       headerStyles: {
@@ -29,15 +31,24 @@ const Header = ({
       }
   };
 
-  const pathNameRef = useRef();
+  if(isProductPage) {
+    Object.assign(styles.headerStyles, {
+      backgroundColor: '#000000', 
+      borderBottom: 'none',
+      boxShadow: '1px 1px 10px 1px #333',
+    });
+    Object.assign(styles.logoLinkStyles, {
+      logo: { filter: 'invert(0)'},
+      cart: {cursor: 'pointer', color: '#fff'},
+      link: { color: '#fff'}
+    });
+  }
 
   useEffect(() => {
-    pathNameRef.current = window?.location?.pathname;
-  })
+    const condition = ['/', '/contact-us', '/about-us', '/terms-of-service'].includes(location.pathname);
+    setIsProductPage(!condition);
+  }, [location])
 
-  useEffect(() => {
-    console.log(['/', '/contact-us', '/about-us', '/terms-of-service'].includes(pathNameRef.current))
-  })
   return (
     <>
     <header
@@ -52,6 +63,7 @@ const Header = ({
             setNavOpen={setNavOpen} 
             isSmallScreen={isSmallScreen} 
             isPastTop={isPastTop}
+            isProductPage={isProductPage}
           />
           :
           <nav>

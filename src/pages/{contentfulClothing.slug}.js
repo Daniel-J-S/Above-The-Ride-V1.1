@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import StarRating from '../components/starRating';
-import Banner from '../components/banner';
 import { graphql, Link } from 'gatsby';
 import Seo from '../components/seo';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 const ClothingDetails = ({ data, location }) => {
-  const [
-    weightCodes,
-    lookup,
-    prices,
-    sizes,
-    maxPrice,
-    minPrice,
-    sizeAndPriceStr, getSizePriceStr] = processSizeAndPrice(data.contentfulClothing.sizesAndPrices);
+  const {
+    0: weightCodes,
+    1: lookup,
+    3: sizes,
+    5: minPrice,
+    6: sizeAndPriceStr, 
+    7: getSizePriceStr} = processSizeAndPrice(data.contentfulClothing.sizesAndPrices);
   
   const [sizeSelection, setSizeSelection] = useState('Choose Size');
 
@@ -37,7 +35,7 @@ const ClothingDetails = ({ data, location }) => {
         location={location}
       />
       <div className="container details-page">
-        <div className="product-details">
+        <div className="product-details pt-5">
           <div className="row">
             <div className="col-md-6">
               <div className="Product-Screenshot">
