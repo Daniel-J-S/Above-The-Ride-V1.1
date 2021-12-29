@@ -52,7 +52,7 @@ const Header = ({
   }
 
   useEffect(() => {
-    const condition = ['/', '/contact-us', '/about-us', '/terms-of-service', '/shop'].includes(location.pathname);
+    const condition = ['/', '/contact-us', '/about-us', '/terms-of-service', '/shop', '/mens', '/ladies'].includes(location.pathname);
     setIsProductPage(!condition);
   }, [location]);
 

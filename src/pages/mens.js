@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import Seo from '../components/seo';
+import Banner from '../components/banner';
 import StarRating from '../components/starRating';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { graphql } from 'gatsby';
@@ -38,8 +39,8 @@ class ClothingPost extends React.Component {
     return (
       <>
       <div className="row product-main">
-        {data.data.allContentfulClothing.edges.slice(0, NoOfPost).map(({ node }) => {
-          const {5: minPrice, 4: maxPrice }  = processSizeAndPrice(node.sizesAndPrices);
+        {data.edges.slice(0, NoOfPost).map(({ node }) => {
+          const {5: minPrice }  = processSizeAndPrice(node.sizesAndPrices);
           return (
           <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-4" to={`/${node.slug}`}>
           <div>
@@ -57,7 +58,7 @@ class ClothingPost extends React.Component {
                 <p>{node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
                 <div className="row">
                   <div className="col-sm-7 align-self-center">
-                    <small>{`$${minPrice} - $${maxPrice}`}</small>
+                    <small>${minPrice}</small>
                   </div>
                 </div>
               </div>
@@ -71,20 +72,21 @@ class ClothingPost extends React.Component {
   }
 }
 
-const MensClothingPage = data => (
+const MensClothingPage = ({data: { clothing, bannerData }, location}) => (
 
   <>
     <Seo 
       title="Mens Apparel" 
       keywords={[`current inventory`, `jackets`, `vests`, `sewing`]} 
       description="Check out our current inventory for mens jackets and vests"
-      location={data.location}
+      location={location}
     />
+    <Banner isIndex={false} bannerData={bannerData} />
     <div className="container store-page mb-5">
       <div className="text-center mt-5">
           <h1 className="with-underline">Mens Apparel</h1>
       </div>
-      <ClothingPost data={data}></ClothingPost>
+      <ClothingPost data={clothing}></ClothingPost>
     </div>
   </>
 );
@@ -93,7 +95,7 @@ export default MensClothingPage;
 
 export const query = graphql`
   query MensQuery {
-    allContentfulClothing (filter: {category: {name: {eq: "Mens"}}}) {
+    clothing: allContentfulClothing (filter: {category: {name: {eq: "Mens"}}}) {
       edges{
         node{
           id
@@ -113,6 +115,16 @@ export const query = graphql`
             id
         }
       }
+    }
+  }
+  bannerData: contentfulHeaderBanner(page: {eq: "mens"}) {
+    title
+    subHeading
+    buttonLink
+    images {
+      gatsbyImageData(width: 1800, placeholder: BLURRED, formats: AUTO)
+      title
+      id
     }
   }
 }`;
