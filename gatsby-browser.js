@@ -16,6 +16,7 @@ export const onServiceWorkerUpdateReady = () => {
 };
 
 
-export const wrapPageElement = ({ element, props }) => {
-  return <Layout {...props}>{element}</Layout>;
-}
+// TODO: uncomment when ready for production
+// export const wrapPageElement = ({ element, props }) => {
+//   return <Layout {...props}>{element}</Layout>;
+// }

@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Seo from '../components/seo';
 import Banner from '../components/banner';
+import Form from '../components/form';
 import { graphql } from 'gatsby';
 import { productFilter } from '../utils/product-filter';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
@@ -33,6 +34,7 @@ function IndexPost ({ data, linkData }) {
     );
 }
 
+/*  TODO: uncomment when ready to move to production
 const IndexPage = data => {
   const mens = productFilter(data.data.allContentfulClothing.edges, 'Mens');
   return (
@@ -59,7 +61,33 @@ const IndexPage = data => {
     </>
   );
 }
+*/
 
+const IndexPage = () => {
+  return (
+    <main style={{
+      minHeight: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
+      <section style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}>
+        <h1>Above The Ride</h1>
+        <p>🚧&nbsp;&nbsp;&nbsp;This Site is Currently Under Construction&nbsp;&nbsp;&nbsp;🚧</p>
+        <div className="Contact-us">
+          <div className="container">
+            <p className="mb-5 mt-5">Have a Question? Please Contact Us</p>
+              <Form />
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
 export default IndexPage;
 
 export const query = graphql`
