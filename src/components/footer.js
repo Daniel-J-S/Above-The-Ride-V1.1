@@ -13,8 +13,8 @@ class Footer extends Component {
                             <section id="nav_menu-8" className="widget widget_nav_menu">
                                 <div className="menu-main-container">
                                     <ul id="menu-main" className="menu">
-                                        <li><Link to="/about">About</Link></li>
-                                        <li><Link to="/store">Store</Link></li>
+                                        <li><Link to="/about-us">About</Link></li>
+                                        <li><Link to="/shop">Shop</Link></li>
                                         <li><Link to="/terms-of-service">Terms of Service</Link></li>
                                         <li><Link to="/contact-us">Contact</Link></li>
                                     </ul>
