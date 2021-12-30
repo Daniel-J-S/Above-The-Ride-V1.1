@@ -3,7 +3,7 @@ import Seo from '../components/seo';
 import { graphql } from 'gatsby';
 import Banner from '../components/banner';
 
-function TermsOfService({
+function PrivacyPolicy({
         data: {
             terms,
             contentfulHeaderBanner
@@ -13,9 +13,9 @@ function TermsOfService({
         return ( 
             <>
             <Seo 
-                title="Terms of Service" 
-                keywords={[`store policies`, `terms of service`]} 
-                description="This website is operated by Above The Ride. Throughout the site, the terms “we”, “us” and “our” refer to Above The Ride."
+                title="Privacy Policy" 
+                keywords={[`privacy`, `consumer rights`, `privacy policy`]} 
+                description="This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from abovetheride.com (the “Site”)."
                 location={location}
             />
             <Banner isIndex={false} bannerData={contentfulHeaderBanner} />
@@ -39,8 +39,8 @@ function TermsOfService({
 }
 
 export const query = graphql`
-query termsOfServiceQuery {
-    terms: contentfulPageInfoSection(name: {eq: "Terms of Service"}) {
+query PrivacyPolicyQuery {
+    terms: contentfulPageInfoSection(name: {eq: "Privacy Policy"}) {
       body {
         childMarkdownRemark {
           html
@@ -48,7 +48,7 @@ query termsOfServiceQuery {
       }
       name
     }
-    contentfulHeaderBanner(page: {eq: "terms"}) {
+    contentfulHeaderBanner(page: {eq: "privacy"}) {
         title
         subHeading
         buttonLink
@@ -60,4 +60,4 @@ query termsOfServiceQuery {
     }
 }`;
 
-export default TermsOfService;
+export default PrivacyPolicy;

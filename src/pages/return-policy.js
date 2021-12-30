@@ -3,7 +3,7 @@ import Seo from '../components/seo';
 import { graphql } from 'gatsby';
 import Banner from '../components/banner';
 
-function TermsOfService({
+function ReturnPolicy({
         data: {
             terms,
             contentfulHeaderBanner
@@ -13,9 +13,9 @@ function TermsOfService({
         return ( 
             <>
             <Seo 
-                title="Terms of Service" 
-                keywords={[`store policies`, `terms of service`]} 
-                description="This website is operated by Above The Ride. Throughout the site, the terms “we”, “us” and “our” refer to Above The Ride."
+                title="Return Policy" 
+                keywords={[`returns`, `return policy`]} 
+                description="Our return policy lasts 14 days from the day you receive your order. If 14 days have passed since receipt of your order, we cannot offer you a refund or exchange."
                 location={location}
             />
             <Banner isIndex={false} bannerData={contentfulHeaderBanner} />
@@ -39,8 +39,8 @@ function TermsOfService({
 }
 
 export const query = graphql`
-query termsOfServiceQuery {
-    terms: contentfulPageInfoSection(name: {eq: "Terms of Service"}) {
+query ReturnPolicyQuery {
+    terms: contentfulPageInfoSection(name: {eq: "Return Policy"}) {
       body {
         childMarkdownRemark {
           html
@@ -48,7 +48,7 @@ query termsOfServiceQuery {
       }
       name
     }
-    contentfulHeaderBanner(page: {eq: "terms"}) {
+    contentfulHeaderBanner(page: {eq: "returns"}) {
         title
         subHeading
         buttonLink
@@ -60,4 +60,4 @@ query termsOfServiceQuery {
     }
 }`;
 
-export default TermsOfService;
+export default ReturnPolicy;
