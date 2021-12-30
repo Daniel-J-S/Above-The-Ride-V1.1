@@ -55,7 +55,7 @@ class IndexPost extends React.Component {
                 <StarRating
                   rating={node.rating}
                 />
-                <p>{node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
+                <p>{node.description.childMarkdownRemark.excerpt.substr(0, 50)}...<br /><Link to={`/${node.slug}`}><small>click for more details</small></Link></p>
                 <div className="row">
                   <div className="col-sm-7 align-self-center">
                     <small>${minPrice}</small>
