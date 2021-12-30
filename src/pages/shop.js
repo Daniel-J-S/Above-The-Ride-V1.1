@@ -40,9 +40,9 @@ class IndexPost extends React.Component {
       <>
       <div className="row product-main">
         {clothing.edges.slice(0, NoOfPost).map(({ node }) => {
-          const {5: minPrice, 4: maxPrice }  = processSizeAndPrice(node.sizesAndPrices);
+          const {5: minPrice }  = processSizeAndPrice(node.sizesAndPrices);
           return (
-          <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-4" to={`/${node.slug}`}>
+          <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-3" to={`/${node.slug}`}>
           <div>
             <div className="details_List">
             {node.image === null ? <div className="no-image">No Image</div> : <GatsbyImage key={node.image.id} image={node.image.gatsbyImageData} alt={node.image.title} />}
@@ -58,7 +58,7 @@ class IndexPost extends React.Component {
                 <p>{node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
                 <div className="row">
                   <div className="col-sm-7 align-self-center">
-                    <small>{`$${minPrice} - $${maxPrice}`}</small>
+                    <small>${minPrice}</small>
                   </div>
                 </div>
               </div>
