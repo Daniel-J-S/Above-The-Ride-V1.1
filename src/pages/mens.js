@@ -52,10 +52,8 @@ class ClothingPost extends React.Component {
                     ? <h2>{node.name.split(' ').slice(0, 4).join(' ')}...</h2> 
                     : <h2>{node.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
                   }
-                <StarRating
-                  rating={node.rating}
-                />
-                <p>{node.description.childMarkdownRemark.excerpt.substr(0, 50)}...</p>
+                <StarRating rating={node.rating} />
+                <p>{node.description.childMarkdownRemark.excerpt.substr(0, 50)}...<br /><Link to={`/${node.slug}`}><small>click for more details</small></Link></p>
                 <div className="row">
                   <div className="col-sm-7 align-self-center">
                     <small>${minPrice}</small>
