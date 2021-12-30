@@ -12,7 +12,7 @@ function Form(props) {
 
     const encode = (data) => {
         const {name, email, message} = data
-        return `form-name=Wilson+Biker+Gear+Website+Contact+Form&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`
+        return `form-name=Above+The+Ride+Website+Contact+Form&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`
     }
 
     function handleChange(e) {
@@ -53,8 +53,8 @@ function Form(props) {
     return (
         <>
             {state.formSubmitted ? <div className="text-center"><h2>Thank you for contacting us!</h2></div> :
-                <form name="Wilson Biker Gear Website Contact Form" data-netlify="true" onSubmit={handleSubmit}>
-                    <input type="hidden" name="form-name" value="Wilson Biker Gear Website Contact Form" />
+                <form name="Above The Ride Website Contact Form" data-netlify="true" onSubmit={handleSubmit}>
+                    <input type="hidden" name="form-name" value="Above The Ride Website Contact Form" />
                     <div>
                         <label>Your name
                         <input placeholder="Your full name" type="text" name="name" required value={state.name}  onChange={handleChange}/></label>
