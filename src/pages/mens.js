@@ -42,7 +42,7 @@ class ClothingPost extends React.Component {
         {data.edges.slice(0, NoOfPost).map(({ node }) => {
           const {5: minPrice }  = processSizeAndPrice(node.sizesAndPrices);
           return (
-          <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-4" to={`/${node.slug}`}>
+          <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-3" to={`/${node.slug}`}>
           <div>
             <div className="details_List">
               {node.image === null ? <div className="no-image">No Image</div> : <GatsbyImage key={node.image.id} image={node.image.gatsbyImageData} alt={node.image.title} />}
