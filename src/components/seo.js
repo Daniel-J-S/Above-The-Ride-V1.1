@@ -35,7 +35,7 @@ function Seo({ description, lang, meta, keywords, title, location }) {
         },
         {
           property: `og:title`,
-          content: location && location.pathname === '/' ? 'Welcome to Wilson Biker Gear' : `${title} | Wilson Biker Gear`,
+          content: location && location.pathname === '/' ? 'Welcome to Above the Ride' : `${title} | Above The Ride`,
         },
         {
           property: `og:description`,
@@ -63,7 +63,7 @@ function Seo({ description, lang, meta, keywords, title, location }) {
         },
         {
           property: `og:image`,
-          content: `https://wilson-biker-gear-test.netlify.app/${ogImage}`,
+          content: `https://above-the-ride.netlify.app/${ogImage}`,
         },
       ]
         .concat(
