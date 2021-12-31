@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import Seo from '../components/seo';
-import Banner from '../components/banner';
+// TODO: comment once ready for prod: import { Link } from 'gatsby';
+// TODO: comment once ready for prod: import { GatsbyImage } from 'gatsby-plugin-image';
+// TODO: uncomment once ready for prod: import Seo from '../components/seo';
+// TODO: uncomment once ready for prod: import Banner from '../components/banner';
 import Form from '../components/form';
-import { graphql } from 'gatsby';
-import { productFilter } from '../utils/product-filter';
-import { processSizeAndPrice } from '../utils/process-size-and-price';
+import CookieBanner from '../components/cookieBanner';
+// import { graphql } from 'gatsby';
+// TODO: uncomment once ready for prod: import { productFilter } from '../utils/product-filter';
+// TODO: comment once ready for prod: import { processSizeAndPrice } from '../utils/process-size-and-price';
 
+/* TODO: uncomment once ready for prod
 
 function IndexPost ({ data, linkData }) {
     return (
@@ -85,11 +87,13 @@ const IndexPage = () => {
           </div>
         </div>
       </section>
+      <CookieBanner />
     </main>
   )
 }
 export default IndexPage;
 
+/* TODO: uncomment once ready for prod
 export const query = graphql`
   query IndexQuery {
     contentfulHeaderBanner(page: {eq: "home"}) {
@@ -133,3 +137,4 @@ export const query = graphql`
     }
   }
 `;
+*/

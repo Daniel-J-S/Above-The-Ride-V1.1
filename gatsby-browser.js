@@ -1,5 +1,5 @@
-import React from 'react';
-import Layout from './src/components/layout';
+// TODO: uncomment once ready for prod: import React from 'react';
+// TODO: uncomment once ready for prod: import Layout from './src/components/layout';
 import './src/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './src/css/style.css';
