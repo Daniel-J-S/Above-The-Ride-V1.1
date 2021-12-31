@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { spaceId, accessToken, snipcart, websiteId } = process.env;
+const { spaceId, accessToken, snipcart, googleAnalyticsId, facebookPixelId } = process.env;
 
 module.exports = {
   siteMetadata: {
@@ -48,6 +48,21 @@ module.exports = {
         apiKey: snipcart,
         autopop: true,
         language: null
+      },
+    },
+    {
+      resolve: `gatsby-plugin-gdpr-cookies`,
+      options: {
+        googleAnalytics: {
+          trackingId: googleAnalyticsId,
+          // Setting this parameter is optional
+          anonymize: true
+        },
+        facebookPixel: {
+          pixelId: facebookPixelId
+        },
+        // Defines the environments where the tracking should be available  - default is ["production"]
+        environments: ['production', 'development']
       },
     },
   ],
