@@ -11,6 +11,7 @@ import {
 
 import Header from './header';
 import Footer from './footer';
+import CookieBanner from './cookieBanner';
 
 
 
@@ -162,6 +163,7 @@ const Layout = ({
               {children}
             </main>
           </div>
+          <CookieBanner />
           <Footer />
         </>
       )}
