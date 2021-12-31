@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { spaceId, accessToken, snipcart, googleAnalyticsId } = process.env;
+const { spaceId, accessToken, snipcart, googleAnalyticsId, facebookPixelId } = process.env;
 
 module.exports = {
   siteMetadata: {
@@ -59,7 +59,7 @@ module.exports = {
           anonymize: true
         },
         facebookPixel: {
-          pixelId: 'YOUR_FACEBOOK_PIXEL_ID'
+          pixelId: facebookPixelId
         },
         // Defines the environments where the tracking should be available  - default is ["production"]
         environments: ['production', 'development']
