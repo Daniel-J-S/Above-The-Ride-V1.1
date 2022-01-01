@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Seo from '../components/seo';
@@ -7,8 +7,33 @@ import { graphql } from 'gatsby';
 import { productFilter } from '../utils/product-filter';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
 
+function DisplayImage ({ image, altPhoto }) {
+  const [ isHovering, setIsHovering ] = useState(true);
+  const handleHover = () => {
+    setIsHovering(!isHovering)
+  }
+  return isHovering ? 
+  (
+    <GatsbyImage 
+      image={image.gatsbyImageData}
+      onMouseOver={handleHover} 
+      key={altPhoto.id}  
+      alt={altPhoto.title} 
+      />
+      ) : (
+    <GatsbyImage 
+      onMouseLeave={handleHover}  
+      key={image.id}  
+      image={altPhoto.gatsbyImageData} 
+      alt={image.title} 
+    />
+  )
+  
+}
+
 
 function IndexPost ({ data, linkData }) {
+    
     return (
       <>
         <div className="row product-main mb-5 container">
@@ -18,7 +43,10 @@ function IndexPost ({ data, linkData }) {
             <Link key={node.id} className="Catalogue__item col-sm-12 col-md-6 col-lg-3" to={`/${node.slug}`}>
             <div>
               <div className="details_List">
-                {node.image === null ? <div className="no-image">No Image</div> : <GatsbyImage key={node.image.id} image={node.image.gatsbyImageData} alt={node.image.title} />}
+                {node.image === null 
+                  ? <div className="no-image">No Image</div> 
+                  : <DisplayImage image={node.image} altPhoto={node.productMorePhotos[node.productMorePhotos.length - 1]} />
+                }
                 <div className="container text-center mt-3 p-2">
                   <h3>{node.name}</h3>
                   <h5>${minPrice}</h5>
@@ -87,6 +115,11 @@ export const query = graphql`
           }
           image {
             gatsbyImageData(width: 1000, placeholder: BLURRED, formats: AUTO)
+            title
+            id
+          }
+          productMorePhotos {
+            gatsbyImageData(width: 1120, placeholder: BLURRED, formats: AUTO)
             title
             id
           }
