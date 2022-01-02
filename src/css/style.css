@@ -1060,11 +1060,12 @@ span.price {
   animation: fadeIn2 1.5s linear forwards;
 }
 
+/* Trying to hide alt text from showing on page load
 .slick-slider .slick-list div img {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-}
+} */
 
 .slick-slider .slick-list .site-Banner:before {
   content: "";
