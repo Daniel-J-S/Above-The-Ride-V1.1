@@ -97,7 +97,7 @@ export const query = graphql`
       buttonLink
       title
       images {
-        gatsbyImageData(width: 1800, placeholder: BLURRED, formats: AUTO)
+        gatsbyImageData(width: 1800, formats: AUTO)
         title
         id
       }

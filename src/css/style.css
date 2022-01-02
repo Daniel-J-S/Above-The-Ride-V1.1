@@ -1053,14 +1053,17 @@ span.price {
   margin: 3rem 0 1.2rem;
 }
 
-.slick-slider .slick-list div img {
-  width: 100%;
-}
 
 .slick-slider .slick-list div img {
   width: 100%;
   margin: 0;
-  animation: fadeIn 1.2s linear forwards;
+  animation: fadeIn2 1.5s linear forwards;
+}
+
+.slick-slider .slick-list div img {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .slick-slider .slick-list .site-Banner:before {
@@ -1074,7 +1077,6 @@ span.price {
   width: 100%;
   z-index: 1;
   height: 100%;
-  animation: fadeIn 900ms linear forwards;
 }
 
 .site-Banner .Banner-details .sub-title {
@@ -1724,6 +1726,16 @@ span:hover {
   opacity: 0;
 }
 
+@keyframes fadeIn2 {
+  0% {
+    opacity: .3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 
 @keyframes fadeIn {
   0% {
@@ -1732,7 +1744,6 @@ span:hover {
 
   100% {
     opacity: 1;
-    background-color: #808080;
   }
 }
 

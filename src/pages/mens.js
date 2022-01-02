@@ -120,7 +120,7 @@ export const query = graphql`
     subHeading
     buttonLink
     images {
-      gatsbyImageData(width: 1800, placeholder: BLURRED, formats: AUTO)
+      gatsbyImageData(width: 1800, formats: AUTO)
       title
       id
     }
