@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'gatsby';
+// TODO: uncomment once ready import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Seo from '../components/seo';
 import Banner from '../components/banner';
 import { graphql } from 'gatsby';
 import { productFilter } from '../utils/product-filter';
-import { processSizeAndPrice } from '../utils/process-size-and-price';
+// TODO: uncomment once ready import { processSizeAndPrice } from '../utils/process-size-and-price';
+import ProductDetail from '../components/product-detail';
 
 function DisplayImage ({ image, altPhoto }) {
   const [ isHovering, setIsHovering ] = useState(true);
@@ -31,7 +32,7 @@ function DisplayImage ({ image, altPhoto }) {
   
 }
 
-
+/*
 function IndexPost ({ data, linkData }) {
     
     return (
@@ -60,7 +61,7 @@ function IndexPost ({ data, linkData }) {
       </>
     );
 }
-
+*/
 const IndexPage = data => {
   const mens = productFilter(data.data.allContentfulClothing.edges, 'Mens');
   return (
@@ -75,12 +76,13 @@ const IndexPage = data => {
       {
         mens.length > 0 &&
         <div className="container mt-5 mb-5">
-          <div className="mb-5">
+          <ProductDetail />
+          {/* <div className="mb-5">
             <Link className="text-dark" to="/mens">
               <h3 className="text-center text-md-left">Mens Apparel</h3>
             </Link>
-          </div>
-          <IndexPost linkData="mens" data={mens}></IndexPost>
+          </div> */}
+          {/* <IndexPost linkData="mens" data={mens}></IndexPost> */}
         </div>
       }
       <div style={{margin: '7rem 0'}} />

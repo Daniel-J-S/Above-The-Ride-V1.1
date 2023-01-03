@@ -99,12 +99,12 @@ const Header = ({
         <Link onClick={() => setNavOpen(false)} className="header-logo" to="/"><img style={styles.logoLinkStyles.logo} src={logo} alt="Above the ride"></img></Link>
       </section>
       <section>
-        {
+        {/* { TODO: Remove once more products are added
           !isSmallScreen &&
           <nav>
             <Link activeStyle={{textDecoration: 'underline'}} style={styles.logoLinkStyles.link} to="/shop">Shop</Link>
           </nav>
-        }
+        } */}
         <div className="header-cart">
         <span className="Header__summary snipcart-summary snipcart-checkout">
           <div style={{visibility: showItemsCount ? 'visible' : 'hidden'}} ref={itemsCount} className="snipcart-items-count" />
