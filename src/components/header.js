@@ -21,7 +21,7 @@ const Header = ({
 
   const handleClick = () => {
     if(cartOpen && typeof window !== 'undefined') {
-      window.Snipcart.api.theme.cart.close()
+      window.Snipcart.api.theme.cart.close();
     }
   }
   

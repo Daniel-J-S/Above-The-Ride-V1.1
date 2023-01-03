@@ -38,7 +38,7 @@ const Layout = ({
           setShowItemsCount(true)
         }
       });
-    }
+    };
 
     if (typeof window !== "undefined") {
       const observer = new MutationObserver(handleMutations);
@@ -62,7 +62,7 @@ const Layout = ({
       if(e.deltaY >= 10) {
         setNavOpen(false);
       }
-    }
+    };
     const handleScroll = () => {
       if(window.scrollY > 10) {
         setNavOpen(false);
@@ -70,7 +70,7 @@ const Layout = ({
       } else {
         setPastTop(false);
       }
-    }
+    };
 
 
     const handleMediaQueryChange = mediaQuery => {
@@ -102,23 +102,23 @@ const Layout = ({
     }, []);
 
     useEffect(() => {
-      handleWheelCallback.current = handleWheel
-      handleScrollCallback.current = handleScroll
-    })
+      handleWheelCallback.current = handleWheel;
+      handleScrollCallback.current = handleScroll;
+    });
   
   
     useEffect(() => {
       window.addEventListener('wheel', handleWheelCallback.current);
       return () => {
         window.removeEventListener('wheel', handleWheelCallback.current);
-      }
+      };
     }, []);
   
     useEffect(() => {
       window.addEventListener('scroll', handleScrollCallback.current);
       return () => {
         window.removeEventListener('scroll', handleScrollCallback.current);
-      }
+      };
     }, []);
   
 
