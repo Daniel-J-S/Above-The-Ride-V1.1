@@ -7,10 +7,10 @@ import Seo from '../components/seo';
 function ContactUs ({ location, data }) {
     function getItemDetails() {
         if(location.state && location.state.itemName && location.state.itemPrice) {
-            const {itemName, itemPrice, itemSize} = location.state
-            return `Hello there, I'm interested in purchasing your "${itemName}" available for $${itemPrice} in a size "${itemSize}".`
+            const {itemName, itemPrice, itemSize} = location.state;
+            return `Hello there, I'm interested in purchasing your "${itemName}" available for $${itemPrice} in a size "${itemSize}".`;
         } else {
-            return false
+            return false;
         }
     }
 
@@ -30,7 +30,7 @@ function ContactUs ({ location, data }) {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export const query = graphql`

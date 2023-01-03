@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'gatsby';
-
 import tiktokLogo from '../static/tiktok-brands.svg';
 
 class Footer extends Component {
@@ -53,8 +52,8 @@ class Footer extends Component {
                     </div>
                 </div>
             </footer>
-        )
+        );
     }
 }
 
-export default Footer
+export default Footer;

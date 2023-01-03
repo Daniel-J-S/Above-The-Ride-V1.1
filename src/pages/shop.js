@@ -1,3 +1,4 @@
+// TODO: update to function component
 import React from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';

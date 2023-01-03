@@ -18,4 +18,4 @@ export const onServiceWorkerUpdateReady = () => {
 
 export const wrapPageElement = ({ element, props }) => {
   return <Layout {...props}>{element}</Layout>;
-}
+};

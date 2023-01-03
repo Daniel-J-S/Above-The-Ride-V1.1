@@ -5,8 +5,8 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const ProductDetail = () => {
-    const data = useStaticQuery(graphql`
+const ProductDetail = (props) => {
+    const { contentfulClothing } = useStaticQuery(graphql`
         query ProductDetailQuery {
             contentfulClothing(name: {eq: "T-Shirt 1"}) {
             id
@@ -15,22 +15,22 @@ const ProductDetail = () => {
             discount
             sizesAndPrices
             image {
-                gatsbyImageData(width: 1120, placeholder: BLURRED, formats: AUTO)
+              gatsbyImageData(width: 1120, placeholder: BLURRED, formats: AUTO)
                 title
                 id
             }
             productMorePhotos {
-                gatsbyImageData(width: 1120, placeholder: BLURRED, formats: AUTO)
+              gatsbyImageData(width: 1120, placeholder: BLURRED, formats: AUTO)
                 title
                 id
             }
             rating
             description {
-                childMarkdownRemark {
+              childMarkdownRemark {
                 html
-                }
+              }
             }
-            }
+          }
         }
     `);
   const {
@@ -39,7 +39,7 @@ const ProductDetail = () => {
     3: sizes,
     5: minPrice,
     6: sizeAndPriceStr, 
-    7: getSizePriceStr} = processSizeAndPrice(data.contentfulClothing.sizesAndPrices);
+    7: getSizePriceStr} = processSizeAndPrice(contentfulClothing.sizesAndPrices);
   
   const [sizeSelection, setSizeSelection] = useState('Choose Size');
 
@@ -48,8 +48,8 @@ const ProductDetail = () => {
     setSizeSelection(e.target.id);
   }
 
-  const image = getImage(data.contentfulClothing.image);
-  const { slug } = data.contentfulClothing;
+  const image = getImage(contentfulClothing.image);
+  const { slug } = contentfulClothing;
   const url = `https://wilsonbikergear.com/.netlify/functions/checkout?id=${slug}&price=${lookup[sizeSelection.value]}&weight=${sizeSelection.userSelection ? weightCodes[sizeSelection.value] : 2}`
 
   return (
@@ -58,31 +58,31 @@ const ProductDetail = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="Product-Screenshot">
-              {data.contentfulClothing.productMorePhotos === null ? <div className="no-image">No Image</div> :
+              {contentfulClothing.productMorePhotos === null ? <div className="no-image">No Image</div> :
                 <Tabs>
-                  {data.contentfulClothing.productMorePhotos.map(image => (
+                  {contentfulClothing.productMorePhotos.map(image => (
                     <TabPanel key={image.id}>
                       <Tab><GatsbyImage key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
                     </TabPanel>
                   ))}
                   <TabList>
-                    {data.contentfulClothing.productMorePhotos.map(image => (
+                    {contentfulClothing.productMorePhotos.map(image => (
                       <Tab key={image.id}><GatsbyImage style={{ height: 150, width: 150 }} key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
                     ))}
                   </TabList>
                 </Tabs>}
               </div>
               <div className="mb-3">
-                <h3>{data.contentfulClothing.rating}.0</h3>
+                <h3>{contentfulClothing.rating}.0</h3>
                 <StarRating
-                  rating={data.contentfulClothing.rating}
+                  rating={contentfulClothing.rating}
                 />
                 <h4 className="mt-3">Based on 76 reviews</h4>
             </div>
             </div>
           <div className="col-md-6 container mt-3">
             <div>
-              <h2>{data.contentfulClothing.name}</h2>
+              <h2>{contentfulClothing.name}</h2>
              </div>
               <div className="row buynowinner">
                 <div className="col-sm-4 col-md-3">
@@ -102,12 +102,12 @@ const ProductDetail = () => {
                 <div className="row container mb-3">
                 <button
                   className="Product snipcart-add-item btn btn-success w-50"
-                  data-item-id={data.contentfulClothing.slug}
+                  data-item-id={contentfulClothing.slug}
                   data-item-image={image === undefined ? "" : image.images.fallback.src}
                   data-item-price={sizeSelection !==  'Choose Size' ? lookup[sizeSelection] : minPrice}
                   data-item-custom1-name="Size"
                   data-item-custom1-options={sizeSelection !== 'Choose Size' ? getSizePriceStr(sizeSelection) : sizeAndPriceStr}
-                  data-item-name={data.contentfulClothing.name}
+                  data-item-name={contentfulClothing.name}
                   data-item-url={url}
                   data-item-weight={sizeSelection !==  'Choose Size' ? weightCodes[sizeSelection] : 2}
                   >
@@ -120,7 +120,7 @@ const ProductDetail = () => {
                     sizeSelection !==  'Choose Size' ?
                     <Link
                     state={{ 
-                      itemName: data.contentfulClothing.name,
+                      itemName: contentfulClothing.name,
                       itemPrice: lookup[sizeSelection],
                       itemSize: sizeSelection
                     }} className="btn btn-default border border-dark w-50" to="/contact-us">
@@ -137,7 +137,7 @@ const ProductDetail = () => {
               <div
                 className="mt-5 mb-5"
                 dangerouslySetInnerHTML={{
-                  __html: data.contentfulClothing.description.childMarkdownRemark.html
+                  __html: contentfulClothing.description.childMarkdownRemark.html
                 }}
               />
             </div>

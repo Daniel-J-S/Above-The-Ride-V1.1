@@ -15,7 +15,7 @@ function AboutUs({
             <Seo 
                 title="About" 
                 keywords={[`about us`, `our story`, `motorcyclist apparel`, `t-shirts`, `hoodies`]} 
-                description="We bring life back to the motorcyclist lifestyle"
+                description="Welcome to Above the Ride! We are a lifestyle brand and e-commerce store that caters to the motorcycling community. Our mission is to provide high-quality t-shirts and accessories that not only look great, but also reflect the unique culture and spirit of motorcycling."
                 location={location}
             />
             <Banner isIndex={false} bannerData={bannerData} />

@@ -5,7 +5,7 @@ import scrollTo from 'gatsby-plugin-smoothscroll';
 const Burger = ({ navOpen, setNavOpen, isPastTop, isProductPage }) => {
     
     const handleClick = () => {
-        scrollTo('#___gatsby')
+        scrollTo('#___gatsby');
         if(isPastTop) {
            setTimeout(() => {
                setNavOpen(!navOpen);
@@ -43,7 +43,7 @@ const Burger = ({ navOpen, setNavOpen, isPastTop, isProductPage }) => {
                 }} 
                 />
         </button>
-    )
+    );
 };
 
 export default Burger;
