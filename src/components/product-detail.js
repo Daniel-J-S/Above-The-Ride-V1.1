@@ -8,7 +8,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 const ProductDetail = () => {
     const data = useStaticQuery(graphql`
         query ProductDetailQuery {
-            contentfulClothing(name: {eq: "T-Shirt 1"}) {
+            contentfulClothing(identifier: {eq: "front-page-feature"}) {
             id
             name
             slug
