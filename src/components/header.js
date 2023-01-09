@@ -1,6 +1,6 @@
 import { Link } from 'gatsby';
 import React, { useEffect, useState } from 'react';
-import logo from '../images/banner-logo.svg';
+import logo from '../images/new-logo.svg';
 import Burger from './burger';
 import NavDrawer from './navDrawer';
 
@@ -32,7 +32,7 @@ const Header = ({
         boxShadow: isPastTop ? '1px 1px 10px 1px #333': 'none',
       },
       logoLinkStyles: {
-        logo: { filter: isPastTop ? 'invert(1)': 'drop-shadow(0 0 0.85rem #000)'},
+        logo: { filter: isPastTop ? 'invert(0)': 'invert(1)'},
         cart: {cursor: 'pointer', color: isPastTop ? '#000': '#fff'},
         link: { color: isPastTop ? '#000': '#fff'}
       }
