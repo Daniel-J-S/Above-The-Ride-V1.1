@@ -2,32 +2,19 @@ import React from 'react';
 import Seo from '../components/seo';
 import Banner from '../components/banner';
 import { graphql } from 'gatsby';
-import { productFilter } from '../utils/product-filter';
 import ProductDetail from '../components/product-detail';
 
 const IndexPage = data => {
-  const mens = productFilter(data.data.allContentfulClothing.edges, 'Mens');
   return (
     <>
       <Seo 
         title="Home" 
         keywords={[`Motorcycle Rider Apparel`, `t-shirts`, `hoodies`, `hats`, `accessories`]}
-        description="We bring life back to the motorcycle rider's lifestyle. Freshen up your look with one of our t-shirts"
+        description="Welcome to Above the Ride, your one-stop shop for all things motorcycling! We offer a range of high-quality t-shirts and accessories designed with the modern rider in mind. Our products are made from durable materials and feature bold designs that capture the spirit of the open road. Whether you're a seasoned pro or a beginner, we have something for everyone. So rev up your engines and visit us today to see our full selection of t-shirts and accessories."
         location={data.location}
       />
       <Banner isIndex={true} bannerData={data.data.contentfulHeaderBanner} />
-      {
-        mens.length > 0 &&
-        <div className="container mt-5 mb-5">
-          <ProductDetail />
-          {/* <div className="mb-5">
-            <Link className="text-dark" to="/mens">
-              <h3 className="text-center text-md-left">Mens Apparel</h3>
-            </Link>
-          </div> */}
-          {/* <IndexPost linkData="mens" data={mens}></IndexPost> */}
-        </div>
-      }
+      <ProductDetail />
       <div style={{margin: '7rem 0'}} />
     </>
   );
