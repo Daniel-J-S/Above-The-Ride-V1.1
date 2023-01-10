@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
-
+import scrollTo from 'gatsby-plugin-smoothscroll';
 
 
 export default function Banner ({ bannerData, isIndex, productName }) {
@@ -30,7 +30,7 @@ export default function Banner ({ bannerData, isIndex, productName }) {
                     <h1 style={{textAlign: !isIndex && 'center', width: !isIndex && '100%'}}>{productName ? productName : bannerData.title}</h1>
                     {
                       isIndex &&
-                      <Link to="/shop">{bannerData.buttonLink}</Link>
+                      <button className="btn btn-primary" onClick={() => scrollTo('#product-details-on-index')}>{bannerData.buttonLink}</button>
                     }
                   </div>
                 </div>

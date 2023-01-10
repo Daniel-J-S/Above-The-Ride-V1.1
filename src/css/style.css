@@ -1107,7 +1107,7 @@ span.price {
   justify-content: center;
 }
 
-.site-Banner .Banner-details>div a {
+.site-Banner .Banner-details>div button {
   max-width: 10rem;
   text-align: center;
 }

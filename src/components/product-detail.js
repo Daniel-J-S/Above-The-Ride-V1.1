@@ -53,7 +53,7 @@ const ProductDetail = () => {
   const url = `https://wilsonbikergear.com/.netlify/functions/checkout?id=${slug}&price=${lookup[sizeSelection.value]}&weight=${sizeSelection.userSelection ? weightCodes[sizeSelection.value] : 2}`
 
   return (
-        <div className="container details-page">
+        <div id="product-details-on-index" className="container details-page">
         <div className="product-details pt-5">
           <div className="row">
             <div className="col-md-6">
