@@ -1,7 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { Link } from 'gatsby';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
 
