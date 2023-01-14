@@ -64,7 +64,7 @@ const Layout = ({
       }
     }
     const handleScroll = () => {
-      if(window.scrollY > 10) {
+      if(window.scrollY > 15) {
         setNavOpen(false);
         setPastTop(true);
       } else {
@@ -72,6 +72,7 @@ const Layout = ({
       }
     }
 
+    console.log(window.scrollY)
 
     const handleMediaQueryChange = mediaQuery => {
       if (mediaQuery.matches) {
