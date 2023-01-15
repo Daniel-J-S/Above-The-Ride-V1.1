@@ -17,7 +17,7 @@ const Header = ({
 
   const isPastTop = useScrollFromTopDetected();
 
-  const [isProductPage, setIsProductPage] = useState(false);
+  // const [isProductPage, setIsProductPage] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
 
   const handleClick = () => {
@@ -52,20 +52,20 @@ const Header = ({
     });
   }
 
-  useEffect(() => {
-    const condition = [
-      '/', 
-      '/contact-us', 
-      '/about-us', 
-      '/terms-of-service', 
-      '/privacy-policy', 
-      '/return-policy', 
-      '/shop', 
-      '/mens', 
-      '/ladies'
-    ].includes(location.pathname);
-    setIsProductPage(!condition);
-  }, [location]);
+  // useEffect(() => {
+  //   const condition = [
+  //     '/', 
+  //     '/contact-us', 
+  //     '/about-us', 
+  //     '/terms-of-service', 
+  //     '/privacy-policy', 
+  //     '/return-policy', 
+  //     '/shop', 
+  //     '/mens', 
+  //     '/ladies'
+  //   ].includes(location.pathname);
+  //   setIsProductPage(!condition);
+  // }, [location]);
 
   useEffect(() => {
     const condition = ['#/cart'].includes(location.hash);
@@ -89,7 +89,6 @@ const Header = ({
             setNavOpen={setNavOpen} 
             isSmallScreen={isSmallScreen} 
             isPastTop={isPastTop}
-            isProductPage={isProductPage}
           />
           :
           <nav>
