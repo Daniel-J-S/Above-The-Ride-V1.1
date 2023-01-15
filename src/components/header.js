@@ -33,20 +33,20 @@ const Header = ({
         boxShadow: isPastTop ? '1px 1px 10px 1px #333': 'none',
       },
       logoLinkStyles: {
-        logo: { filter: isPastTop ? 'invert(0)': 'invert(1)', WebKitFilter: isPastTop ? 'invert(0)': 'invert(1)'},
+        logo: { filter: isPastTop ? 'invert(0)': 'invert(1)'},
         cart: {cursor: 'pointer', color: isPastTop ? '#000': '#fff'},
         link: { color: isPastTop ? '#000': '#fff'}
       }
   };
 
-  if(isProductPage || cartOpen) {
+  if(cartOpen) {
     Object.assign(styles.headerStyles, {
       backgroundColor: '#000000', 
       borderBottom: 'none',
       boxShadow: '1px 1px 10px 1px #333',
     });
     Object.assign(styles.logoLinkStyles, {
-      logo: { filter: 'invert(0)'},
+      logo: { filter: 'invert(1)'},
       cart: {cursor: 'pointer', color: '#fff'},
       link: { color: '#fff'}
     });
@@ -71,6 +71,8 @@ const Header = ({
     const condition = ['#/cart'].includes(location.hash);
     setCartOpen(condition);
   }, [location.hash]);
+
+  console.log(isPastTop)
 
   return (
     <>

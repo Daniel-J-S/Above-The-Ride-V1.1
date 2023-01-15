@@ -9,7 +9,7 @@ export default function useScrollFromTopDetected() {
     const isBrowser = typeof window !== "undefined";
 
     const handleScroll = () => {
-        if (window.scrollY > 15) {
+        if (window.scrollY > 10) {
             setIsPastTop(true);
         } else {
             setIsPastTop(false);
