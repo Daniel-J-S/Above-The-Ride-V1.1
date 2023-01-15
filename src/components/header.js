@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import logo from '../images/new-logo.svg';  
 import Burger from './burger';
 import NavDrawer from './navDrawer';
-
+import useScrollFromTopDetected from '../hooks/useScrollFromTopDetected';
 
 const Header = ({
     navOpen,
@@ -13,8 +13,9 @@ const Header = ({
     isSmallerScreen,
     itemsCount,
     showItemsCount,
-    isPastTop,
   }) => {
+
+  const isPastTop = useScrollFromTopDetected();
 
   const [isProductPage, setIsProductPage] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);

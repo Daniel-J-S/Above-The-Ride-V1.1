@@ -13,22 +13,25 @@ import Header from './header';
 import Footer from './footer';
 import CookieBanner from './cookieBanner';
 
+import useScrollFromTopDetected from '../hooks/useScrollFromTopDetected';
 
 
 const Layout = ({
     children,
     location
   }) => {
+
+
     const [isSmallerScreen, setIsSmallerScreen] = useState(false);
     const [isNavVisible, setNavVisibility] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(true);
     const [showItemsCount, setShowItemsCount] = useState(false);
     const [navOpen, setNavOpen] = useState(false);
-    const [isPastTop, setPastTop] = useState(false);
 
+    const isPastTop = useScrollFromTopDetected()
     const itemsCount = useRef();
     const handleWheelCallback = useRef();
-    const handleScrollCallback = useRef();
+
 
     const handleMutations = function (mutations) {
       mutations.forEach(function (mutation) {
@@ -63,16 +66,6 @@ const Layout = ({
         setNavOpen(false);
       }
     }
-    const handleScroll = () => {
-      if(window.scrollY > 15) {
-        setNavOpen(false);
-        setPastTop(true);
-      } else {
-        setPastTop(false);
-      }
-    }
-
-    console.log(window.scrollY)
 
     const handleMediaQueryChange = mediaQuery => {
       if (mediaQuery.matches) {
@@ -104,7 +97,6 @@ const Layout = ({
 
     useEffect(() => {
       handleWheelCallback.current = handleWheel
-      handleScrollCallback.current = handleScroll
     })
   
   
@@ -114,14 +106,6 @@ const Layout = ({
         window.removeEventListener('wheel', handleWheelCallback.current);
       }
     }, []);
-  
-    useEffect(() => {
-      window.addEventListener('scroll', handleScrollCallback.current);
-      return () => {
-        window.removeEventListener('scroll', handleScrollCallback.current);
-      }
-    }, []);
-  
 
   return (
     <StaticQuery
@@ -149,7 +133,7 @@ const Layout = ({
             navOpen={navOpen}
             setNavOpen={setNavOpen}
             itemsCount={itemsCount}
-            isPastTop={isPastTop}
+            // isPastTop={isPastTop}
             location={location}
           />
           <div className="main-container" style={{
