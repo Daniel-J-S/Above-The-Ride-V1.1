@@ -38,8 +38,6 @@ const Header = ({
       }
   };
 
-  let imageSrc = isPastTop ? blackLogo : whiteLogo
-
   if(navOpen) {
     Object.assign(styles.headerStyles, {
       boxShadow: 'none',
@@ -56,7 +54,6 @@ const Header = ({
       cart: {cursor: 'pointer', color: '#fff'},
       link: { color: '#fff'}
     });
-    imageSrc = whiteLogo;
   }
 
   if(location.pathname !== '/') {
@@ -68,7 +65,6 @@ const Header = ({
       cart: {color: '#fff'},
       link: { color: '#fff'}
     });
-    imageSrc = whiteLogo
   }
 
   useEffect(() => {
@@ -102,15 +98,17 @@ const Header = ({
       }
       </section>
       <section>
-        <Link onClick={() => setNavOpen(false)} className="header-logo" to="/"><img src={imageSrc} alt="Above the ride"></img></Link>
+        <Link onClick={() => setNavOpen(false)} className="header-logo" to="/">
+          { (!isPastTop || navOpen || cartOpen) ?
+            <img src={whiteLogo} alt="Above the ride"></img>
+            : location.pathname !== '/' ?
+            <img src={whiteLogo} alt="Above the ride"></img>
+            :
+            <img src={blackLogo} alt="Above the ride"></img>
+          }
+        </Link>
       </section>
       <section>
-        {/* { TODO: Remove once more products are added
-          !isSmallScreen &&
-          <nav>
-            <Link activeStyle={{textDecoration: 'underline'}} style={styles.linkStyles.link} to="/shop">Shop</Link>
-          </nav>
-        } */}
         <div className="header-cart">
         <span className="Header__summary snipcart-summary snipcart-checkout">
           <div style={{visibility: showItemsCount ? 'visible' : 'hidden'}} ref={itemsCount} className="snipcart-items-count" />
@@ -118,7 +116,6 @@ const Header = ({
         </span>
       </div>
       </section>
-
     </header>
     <NavDrawer
       location={location} 
