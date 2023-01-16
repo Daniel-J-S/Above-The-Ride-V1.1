@@ -23,6 +23,7 @@ function ContactUs () {
             />            
             <div className="Contact-us">
                 <div className="container">
+                    <h2>Contact Us</h2>
                     <p className="mb-5 mt-5"><small>Question about returning an item? See our <Link to="/terms-of-service">Terms of Service</Link> page before contacting us</small></p>
                     <Form message={getItemDetails()} />
                 </div>
