@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import Form from '../components/form';
 import Seo from '../components/seo';
 import { useLocation } from '@reach/router';

@@ -40,6 +40,11 @@ const Header = ({
 
   let imageSrc = isPastTop ? blackLogo : whiteLogo
 
+  if(navOpen) {
+    Object.assign(styles.headerStyles, {
+      boxShadow: 'none',
+    });
+  }
 
   if(cartOpen) {
     Object.assign(styles.headerStyles, {
@@ -58,7 +63,6 @@ const Header = ({
     Object.assign(styles.headerStyles, {
       backgroundColor: '#000000', 
       borderBottom: 'none',
-      boxShadow: '1px 1px 10px 1px #333',
     });
     Object.assign(styles.linkStyles, {
       cart: {color: '#fff'},
