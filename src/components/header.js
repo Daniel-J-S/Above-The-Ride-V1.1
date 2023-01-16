@@ -33,7 +33,7 @@ const Header = ({
         boxShadow: isPastTop ? '1px 1px 10px 1px #333': 'none',
       },
       logoLinkStyles: {
-        logo: { filter: isPastTop ? 'invert(0)': 'invert(1)'},
+        logo: { filter: isPastTop ? 'invert(0)': 'invert(100%)'},
         cart: {cursor: 'pointer', color: isPastTop ? '#000': '#fff'},
         link: { color: isPastTop ? '#000': '#fff'}
       }
@@ -46,7 +46,7 @@ const Header = ({
       boxShadow: '1px 1px 10px 1px #333',
     });
     Object.assign(styles.logoLinkStyles, {
-      logo: { filter: 'invert(1)'},
+      logo: { filter: 'invert(100%)'},
       cart: {cursor: 'pointer', color: '#fff'},
       link: { color: '#fff'}
     });
