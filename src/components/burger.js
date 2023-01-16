@@ -2,7 +2,7 @@ import React from 'react';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
 
-const Burger = ({ navOpen, setNavOpen, isPastTop }) => {
+const Burger = ({ navOpen, setNavOpen, isPastTop, cartOpen }) => {
     
     const handleClick = () => {
         scrollTo('#___gatsby')
@@ -15,21 +15,25 @@ const Burger = ({ navOpen, setNavOpen, isPastTop }) => {
        }
     }
 
+    const colorStyles = {
+        backgroundColor: isPastTop ? '#000' : '#fff'
+    };
     return (
         <button 
             className="burger" 
             onClick={handleClick}
+            style={{display: cartOpen ? 'none' : 'block'}}
             >
             <div 
                 style={{
-                    backgroundColor: isPastTop ? '#000': '#fff',
+                    ...colorStyles,
                     margin: navOpen ? 0 : '.35rem',
                     transform: navOpen ? 'rotate(45deg)' : 'rotate(0)',
                 }} 
             />
             <div 
                 style={{
-                    backgroundColor: isPastTop ? '#000': '#fff',
+                    ...colorStyles,
                     margin: navOpen ? 0 : '.35rem',
                     transform: navOpen ? 'translateX(20px)' : 'translateX(0)',
                     opacity: navOpen ? 0 : 1,
@@ -37,7 +41,7 @@ const Burger = ({ navOpen, setNavOpen, isPastTop }) => {
             />
             <div 
                 style={{
-                    backgroundColor: isPastTop ? '#000': '#fff',
+                    ...colorStyles,
                     margin: navOpen ? 0 : '.35rem',
                     transform: navOpen ? 'rotate(-45deg)' : 'rotate(0)',
                 }} 

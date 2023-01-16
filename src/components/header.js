@@ -89,6 +89,7 @@ const Header = ({
             setNavOpen={setNavOpen} 
             isSmallScreen={isSmallScreen} 
             isPastTop={isPastTop}
+            cartOpen={cartOpen}
           />
           :
           <nav>
