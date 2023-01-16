@@ -5,17 +5,18 @@ import blackLogo from '../images/black-logo.svg';
 import Burger from './burger';
 import NavDrawer from './navDrawer';
 import useScrollFromTopDetected from '../hooks/useScrollFromTopDetected';
+import { useLocation } from '@reach/router';
 
 const Header = ({
     navOpen,
     setNavOpen,
     isSmallScreen,
-    location,
     isSmallerScreen,
     itemsCount,
     showItemsCount,
   }) => {
 
+  const location = useLocation();
   const isPastTop = useScrollFromTopDetected();
   const [cartOpen, setCartOpen] = useState(false);
 
@@ -39,6 +40,7 @@ const Header = ({
 
   let imageSrc = isPastTop ? blackLogo : whiteLogo
 
+
   if(cartOpen) {
     Object.assign(styles.headerStyles, {
       backgroundColor: '#000000', 
@@ -50,6 +52,19 @@ const Header = ({
       link: { color: '#fff'}
     });
     imageSrc = whiteLogo;
+  }
+
+  if(location.pathname !== '/') {
+    Object.assign(styles.headerStyles, {
+      backgroundColor: '#000000', 
+      borderBottom: 'none',
+      boxShadow: '1px 1px 10px 1px #333',
+    });
+    Object.assign(styles.linkStyles, {
+      cart: {color: '#fff'},
+      link: { color: '#fff'}
+    });
+    imageSrc = whiteLogo
   }
 
   useEffect(() => {
@@ -73,6 +88,7 @@ const Header = ({
             isSmallScreen={isSmallScreen} 
             isPastTop={isPastTop}
             cartOpen={cartOpen}
+            location={location}
           />
           :
           <nav>

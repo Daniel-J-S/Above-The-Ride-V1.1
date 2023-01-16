@@ -12,13 +12,11 @@ import {
 import Header from './header';
 import Footer from './footer';
 import CookieBanner from './cookieBanner';
-
-import useScrollFromTopDetected from '../hooks/useScrollFromTopDetected';
-
+import { useLocation } from '@reach/router';
+    
 
 const Layout = ({
     children,
-    location
   }) => {
 
 
@@ -28,10 +26,9 @@ const Layout = ({
     const [showItemsCount, setShowItemsCount] = useState(false);
     const [navOpen, setNavOpen] = useState(false);
 
-    const isPastTop = useScrollFromTopDetected()
     const itemsCount = useRef();
     const handleWheelCallback = useRef();
-
+    const { pathname } = useLocation();
 
     const handleMutations = function (mutations) {
       mutations.forEach(function (mutation) {
@@ -133,8 +130,6 @@ const Layout = ({
             navOpen={navOpen}
             setNavOpen={setNavOpen}
             itemsCount={itemsCount}
-            // isPastTop={isPastTop}
-            location={location}
           />
           <div className="main-container" style={{
               opacity: navOpen ? '.2' : '1',
@@ -142,6 +137,7 @@ const Layout = ({
               backgroundColor: 'white',
               zIndex: 9999,
               width: '100vw',
+              paddingTop: pathname !== '/' && '10rem',
               animation: navOpen ? 'fadeOut 500ms ease-out backwards':'none'
             }}>
             <main>

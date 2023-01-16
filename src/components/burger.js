@@ -1,8 +1,10 @@
 import React from 'react';
 import scrollTo from 'gatsby-plugin-smoothscroll';
-
+import { useLocation } from '@reach/router';
 
 const Burger = ({ navOpen, setNavOpen, isPastTop, cartOpen }) => {
+
+    const location = useLocation();
     
     const handleClick = () => {
         scrollTo('#___gatsby')
@@ -19,6 +21,12 @@ const Burger = ({ navOpen, setNavOpen, isPastTop, cartOpen }) => {
         backgroundColor: isPastTop ? '#000' : '#fff',
         margin: navOpen ? 0 : '.35rem'
     };
+
+    if(location.pathname !== '/') {
+        Object.assign(uniformStyles, {
+            backgroundColor: '#fff'
+        })
+    }
     
     return (
         <button 
