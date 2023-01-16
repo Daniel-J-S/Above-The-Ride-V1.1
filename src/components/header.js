@@ -1,6 +1,7 @@
 import { Link } from 'gatsby';
 import React, { useEffect, useState } from 'react';
-import logo from '../images/new-logo.svg';  
+import whiteLogo from '../images/white-logo.svg';  
+import blackLogo from '../images/black-logo.svg';  
 import Burger from './burger';
 import NavDrawer from './navDrawer';
 import useScrollFromTopDetected from '../hooks/useScrollFromTopDetected';
@@ -16,8 +17,6 @@ const Header = ({
   }) => {
 
   const isPastTop = useScrollFromTopDetected();
-
-  // const [isProductPage, setIsProductPage] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
 
   const handleClick = () => {
@@ -32,12 +31,13 @@ const Header = ({
         borderBottom: isPastTop ? '1px solid #808080': 'none',
         boxShadow: isPastTop ? '1px 1px 10px 1px #333': 'none',
       },
-      logoLinkStyles: {
-        logo: { filter: isPastTop ? 'invert(0)': 'invert(100%)'},
+      linkStyles: {
         cart: {cursor: 'pointer', color: isPastTop ? '#000': '#fff'},
         link: { color: isPastTop ? '#000': '#fff'}
       }
   };
+
+  let imageSrc = isPastTop ? blackLogo : whiteLogo
 
   if(cartOpen) {
     Object.assign(styles.headerStyles, {
@@ -45,34 +45,17 @@ const Header = ({
       borderBottom: 'none',
       boxShadow: '1px 1px 10px 1px #333',
     });
-    Object.assign(styles.logoLinkStyles, {
-      logo: { filter: 'invert(100%)'},
+    Object.assign(styles.linkStyles, {
       cart: {cursor: 'pointer', color: '#fff'},
       link: { color: '#fff'}
     });
+    imageSrc = whiteLogo;
   }
-
-  // useEffect(() => {
-  //   const condition = [
-  //     '/', 
-  //     '/contact-us', 
-  //     '/about-us', 
-  //     '/terms-of-service', 
-  //     '/privacy-policy', 
-  //     '/return-policy', 
-  //     '/shop', 
-  //     '/mens', 
-  //     '/ladies'
-  //   ].includes(location.pathname);
-  //   setIsProductPage(!condition);
-  // }, [location]);
 
   useEffect(() => {
     const condition = ['#/cart'].includes(location.hash);
     setCartOpen(condition);
   }, [location.hash]);
-
-  console.log(isPastTop)
 
   return (
     <>
@@ -93,25 +76,25 @@ const Header = ({
           />
           :
           <nav>
-            <Link activeStyle={{textDecoration: 'underline'}} style={styles.logoLinkStyles.link} to="/about-us">About</Link>
-            <Link activeStyle={{textDecoration: 'underline'}} style={styles.logoLinkStyles.link} to="/contact-us">Contact</Link>
+            <Link activeStyle={{textDecoration: 'underline'}} style={styles.linkStyles.link} to="/about-us">About</Link>
+            <Link activeStyle={{textDecoration: 'underline'}} style={styles.linkStyles.link} to="/contact-us">Contact</Link>
           </nav>
       }
       </section>
       <section>
-        <Link onClick={() => setNavOpen(false)} className="header-logo" to="/"><img style={styles.logoLinkStyles.logo} src={logo} alt="Above the ride"></img></Link>
+        <Link onClick={() => setNavOpen(false)} className="header-logo" to="/"><img src={imageSrc} alt="Above the ride"></img></Link>
       </section>
       <section>
         {/* { TODO: Remove once more products are added
           !isSmallScreen &&
           <nav>
-            <Link activeStyle={{textDecoration: 'underline'}} style={styles.logoLinkStyles.link} to="/shop">Shop</Link>
+            <Link activeStyle={{textDecoration: 'underline'}} style={styles.linkStyles.link} to="/shop">Shop</Link>
           </nav>
         } */}
         <div className="header-cart">
         <span className="Header__summary snipcart-summary snipcart-checkout">
           <div style={{visibility: showItemsCount ? 'visible' : 'hidden'}} ref={itemsCount} className="snipcart-items-count" />
-          <i style={styles.logoLinkStyles.cart} className="fas fa-sm fa-shopping-bag" />
+          <i style={styles.linkStyles.cart} className="fas fa-sm fa-shopping-bag" />
         </span>
       </div>
       </section>
