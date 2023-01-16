@@ -15,9 +15,11 @@ const Burger = ({ navOpen, setNavOpen, isPastTop, cartOpen }) => {
        }
     }
 
-    const colorStyles = {
-        backgroundColor: isPastTop ? '#000' : '#fff'
+    const uniformStyles = {
+        backgroundColor: isPastTop ? '#000' : '#fff',
+        margin: navOpen ? 0 : '.35rem'
     };
+    
     return (
         <button 
             className="burger" 
@@ -26,23 +28,20 @@ const Burger = ({ navOpen, setNavOpen, isPastTop, cartOpen }) => {
             >
             <div 
                 style={{
-                    ...colorStyles,
-                    margin: navOpen ? 0 : '.35rem',
+                    ...uniformStyles,
                     transform: navOpen ? 'rotate(45deg)' : 'rotate(0)',
                 }} 
             />
             <div 
                 style={{
-                    ...colorStyles,
-                    margin: navOpen ? 0 : '.35rem',
+                    ...uniformStyles,
                     transform: navOpen ? 'translateX(20px)' : 'translateX(0)',
                     opacity: navOpen ? 0 : 1,
                 }} 
             />
             <div 
                 style={{
-                    ...colorStyles,
-                    margin: navOpen ? 0 : '.35rem',
+                    ...uniformStyles,
                     transform: navOpen ? 'rotate(-45deg)' : 'rotate(0)',
                 }} 
                 />
