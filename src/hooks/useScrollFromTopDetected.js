@@ -4,7 +4,7 @@ import {
 } from 'react'
 
 export default function useScrollFromTopDetected() {
-    const [isPastTop, setIsPastTop] = useState(false);
+    const [isPastTop, setIsPastTop] = useState(true);
 
     const isBrowser = typeof window !== "undefined";
 
