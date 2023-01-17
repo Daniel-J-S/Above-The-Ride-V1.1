@@ -117,6 +117,9 @@ const Header = ({
       Object.assign(styles.logo.blackLogo, {
         display: 'none'
       });
+      Object.assign(styles.logo.whiteLogo, {
+        display: 'block'
+      });
     }
 
     useEffect(() => {
