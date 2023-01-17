@@ -1060,6 +1060,10 @@ span.price {
   animation: fadeIn2 1.5s linear forwards;
 }
 
+.slick-slider .slick-list div {
+  height: 100vh;
+}
+
 /* Trying to hide alt text from showing on page load
 .slick-slider .slick-list div img {
   text-indent: 100%;
@@ -1098,7 +1102,14 @@ span.price {
 }
 
 .site-Banner .Banner-details>div {
-  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.site-Banner .Banner-details>div button {
+  max-width: 10rem;
+  text-align: center;
 }
 
 .store-page .product-main {

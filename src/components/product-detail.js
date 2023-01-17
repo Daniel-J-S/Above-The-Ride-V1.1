@@ -5,10 +5,10 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const ProductDetail = (props) => {
+const ProductDetail = () => {
     const { contentfulClothing } = useStaticQuery(graphql`
         query ProductDetailQuery {
-            contentfulClothing(name: {eq: "T-Shirt 1"}) {
+            contentfulClothing(identifier: {eq: "front-page-feature"}) {
             id
             name
             slug
@@ -50,10 +50,10 @@ const ProductDetail = (props) => {
 
   const image = getImage(contentfulClothing.image);
   const { slug } = contentfulClothing;
-  const url = `https://wilsonbikergear.com/.netlify/functions/checkout?id=${slug}&price=${lookup[sizeSelection.value]}&weight=${sizeSelection.userSelection ? weightCodes[sizeSelection.value] : 2}`
+  const url = `https://above.com/.netlify/functions/checkout?id=${slug}&price=${lookup[sizeSelection.value]}&weight=${sizeSelection.userSelection ? weightCodes[sizeSelection.value] : 2}`
 
   return (
-        <div className="container details-page">
+        <div id="product-details-on-index" className="container details-page">
         <div className="product-details pt-5">
           <div className="row">
             <div className="col-md-6">
@@ -67,7 +67,7 @@ const ProductDetail = (props) => {
                   ))}
                   <TabList>
                     {contentfulClothing.productMorePhotos.map(image => (
-                      <Tab key={image.id}><GatsbyImage style={{ height: 150, width: 150 }} key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
+                      <Tab key={image.id}><GatsbyImage style={{ height: 100, width: 100 }} key={image.id} image={image.gatsbyImageData} alt={image.title} /></Tab>
                     ))}
                   </TabList>
                 </Tabs>}

@@ -5,7 +5,7 @@ const { spaceId, accessToken, snipcart, googleAnalyticsId, facebookPixelId } = p
 module.exports = {
   siteMetadata: {
     title: `Above The Ride`,
-    description: `Welcome to Above the Ride! We are a lifestyle brand and e-commerce store that caters to the motorcycling community. Our mission is to provide high-quality t-shirts and accessories that not only look great, but also reflect the unique culture and spirit of motorcycling.`,
+    description: `"Welcome to Above the Ride, your one-stop shop for all things motorcycling! We offer a range of high-quality t-shirts and accessories designed with the modern rider in mind. Our products are made from durable materials and feature bold designs that capture the spirit of the open road. Whether you're a seasoned pro or a beginner, we have something for everyone. So rev up your engines and visit us today to see our full selection of t-shirts and accessories."`,
     author: `DanielJS`,
   },
   plugins: [

@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import ogImage from '../images/og-image.png';
+import { useLocation } from '@reach/router';
 
-function Seo({ description, lang, meta, keywords, title, location }) {
+function Seo({ description, lang, meta, keywords, title }) {
+  const location = useLocation();
   const { site } = useStaticQuery(
     graphql`
       query {

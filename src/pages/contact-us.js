@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import Form from '../components/form';
-import Banner from '../components/banner';
 import Seo from '../components/seo';
+import { useLocation } from '@reach/router';
 
-function ContactUs ({ location, data }) {
+function ContactUs () {
+    const location = useLocation();
     function getItemDetails() {
         if(location.state && location.state.itemName && location.state.itemPrice) {
             const {itemName, itemPrice, itemSize} = location.state;
@@ -13,18 +14,16 @@ function ContactUs ({ location, data }) {
             return false;
         }
     }
-
     return (
         <>
             <Seo 
                 title="Contact Us" 
                 keywords={[`Let us hear from you`, `contact us`, `reach out to us`]} 
                 description="Please contact us for any questions regarding our current inventory or if you just want to say hello"
-                location={location}
-            />
-            <Banner isIndex={false} bannerData={data.contentfulHeaderBanner} />
+            />            
             <div className="Contact-us">
                 <div className="container">
+                    <h2>Contact Us</h2>
                     <p className="mb-5 mt-5"><small>Question about returning an item? See our <Link to="/terms-of-service">Terms of Service</Link> page before contacting us</small></p>
                     <Form message={getItemDetails()} />
                 </div>
@@ -32,21 +31,6 @@ function ContactUs ({ location, data }) {
         </>
     );
 }
-
-export const query = graphql`
-    query {
-        contentfulHeaderBanner(page: {eq: "contact us"}) {
-            title
-            subHeading
-            buttonLink
-            images {
-                gatsbyImageData(width: 1800, formats: AUTO)
-                title
-                id
-            }
-        }
-    }
-`;
 
 
 export default ContactUs;
