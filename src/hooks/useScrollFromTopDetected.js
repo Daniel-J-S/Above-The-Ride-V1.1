@@ -11,6 +11,8 @@ export default function useScrollFromTopDetected() {
     const handleScroll = () => {
         if (window.scrollY > 10) {
             setIsPastTop(true);
+        } else if(window.screenY === 0) {
+            setIsPastTop(false);
         } else {
             setIsPastTop(false);
         }
