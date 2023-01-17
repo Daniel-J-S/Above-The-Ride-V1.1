@@ -26,6 +26,7 @@ const Header = ({
     const location = useLocation();
     const isPastTop = useScrollFromTopDetected();
     const [cartOpen, setCartOpen] = useState(false);
+    const [checkoutOpen, setCheckoutOpen] = useState(false);
 
     const handleClick = () => {
       if (cartOpen && typeof window !== 'undefined') {
@@ -77,7 +78,7 @@ const Header = ({
       });
     }
 
-    if (cartOpen) {
+    if (cartOpen || checkoutOpen) {
       Object.assign(styles.headerStyles, {
         backgroundColor: '#000000',
         borderBottom: 'none',
@@ -94,6 +95,9 @@ const Header = ({
       });
       Object.assign(styles.logo.blackLogo, {
         display: 'none'
+      });
+      Object.assign(styles.logo.whiteLogo, {
+        display: 'block'
       });
     }
 
@@ -116,8 +120,10 @@ const Header = ({
     }
 
     useEffect(() => {
-      const condition = ['#/cart'].includes(location.hash);
-      setCartOpen(condition);
+      const cartCondition = ['#/cart'].includes(location.hash);
+      const checkOutCondition = ['#/checkout'].includes(location.hash);
+      setCartOpen(cartCondition);
+      setCheckoutOpen(checkOutCondition);
     }, [location.hash]);
 
     return (
