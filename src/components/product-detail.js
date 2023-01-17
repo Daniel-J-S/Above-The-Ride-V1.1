@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import StarRating from '../components/starRating';
+//TODO: uncomment once there are more ratings import StarRating from '../components/starRating';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import { processSizeAndPrice } from '../utils/process-size-and-price';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
@@ -71,13 +71,16 @@ const ProductDetail = () => {
                   </TabList>
                 </Tabs>}
               </div>
-              <div className="mb-3">
-                <h3>{contentfulClothing.rating}.0</h3>
-                <StarRating
-                  rating={contentfulClothing.rating}
-                />
-                <h4 className="mt-3">Based on 76 reviews</h4>
-            </div>
+              {/* 
+                TODO: uncomment once there are more ratings
+                <div className="mb-3">
+                  <h3>{contentfulClothing.rating}.0</h3>
+                  <StarRating
+                    rating={contentfulClothing.rating}
+                  />
+                  <h4 className="mt-3">Based on 76 reviews</h4>
+                </div> 
+            */}
             </div>
           <div className="col-md-6 container mt-3">
             <div>
