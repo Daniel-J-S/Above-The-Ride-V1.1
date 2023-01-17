@@ -48,10 +48,12 @@ const ProductDetail = () => {
     setSizeSelection(e.target.id);
   }
 
+  console.log({ weightCodes, lookup, sizes, minPrice, sizeAndPriceStr, getSizePriceStr})
+
   const image = getImage(contentfulClothing.image);
   const { slug } = contentfulClothing;
-  const url = `https://abovetheride.com/.netlify/functions/checkout?id=${slug}&price=${lookup[sizeSelection.value]}&weight=${sizeSelection.userSelection ? weightCodes[sizeSelection.value] : 2}`
-
+  const url = `https://abovetheride.com/.netlify/functions/checkout?id=${slug}&price=${lookup[sizeSelection]}&weight=${sizeSelection.userSelection ? weightCodes[sizeSelection.value] : 2}`
+  console.log(url)
   return (
         <div id="product-details-on-index" className="container details-page">
         <div className="product-details pt-5">
