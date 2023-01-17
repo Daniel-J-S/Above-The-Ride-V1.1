@@ -33,7 +33,7 @@ const ProductDetails = data => {
   }
 
   const { slug } = data.data.contentfulClothing;
-  const url = `https://wilsonbikergear.com/.netlify/functions/checkout?id=${slug}&price=${lookup[selectState.value]}&weight=${selectState.userSelection ? weightCodes[selectState.value] : 2}`
+  const url = `https://abovetheride.com/.netlify/functions/checkout?id=${slug}&price=${lookup[selectState.value]}&weight=${selectState.userSelection ? weightCodes[selectState.value] : 2}`
   return (
     <>
       <Seo 

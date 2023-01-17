@@ -24,7 +24,7 @@ const ClothingDetails = ({ data: { contentfulClothing }, location }) => {
 
   const image = getImage(contentfulClothing.image);
   const { slug } = contentfulClothing;
-  const url = `https://wilsonbikergear.com/.netlify/functions/checkout?id=${slug}&price=${lookup[sizeSelection.value]}&weight=${sizeSelection.userSelection ? weightCodes[sizeSelection.value] : 2}`
+  const url = `https://abovetheride.com/.netlify/functions/checkout?id=${slug}&price=${lookup[sizeSelection.value]}&weight=${sizeSelection.userSelection ? weightCodes[sizeSelection.value] : 2}`
   
   return (
     <>
