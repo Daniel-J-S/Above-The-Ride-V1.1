@@ -30,10 +30,10 @@ const navDrawerStyles = {
 }
 
 const links = [
-    {
-        slug: '/shop',
-        text: 'Shop'
-    },
+    // { TODO: Add access to shop later
+    //     slug: '/shop',
+    //     text: 'Shop'
+    // },
     {
         slug: '/about-us',
         text: 'About Us'

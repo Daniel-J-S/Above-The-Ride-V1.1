@@ -1,14 +1,11 @@
 import React from 'react';
 import Seo from '../components/seo';
 import { graphql } from 'gatsby';
-import Banner from '../components/banner';
 
 function ReturnPolicy({
         data: {
             terms,
-            contentfulHeaderBanner
         },
-        location
     }) {
         return ( 
             <>
@@ -16,9 +13,7 @@ function ReturnPolicy({
                 title="Return Policy" 
                 keywords={[`returns`, `return policy`]} 
                 description="Our return policy lasts 14 days from the day you receive your order. If 14 days have passed since receipt of your order, we cannot offer you a refund or exchange."
-                location={location}
             />
-            <Banner isIndex={false} bannerData={contentfulHeaderBanner} />
             <div className="store-Policies">
                 <div className="container">
                     <div className="row">
@@ -53,7 +48,7 @@ query ReturnPolicyQuery {
         subHeading
         buttonLink
         images {
-            gatsbyImageData(width: 1800, placeholder: BLURRED, formats: AUTO)
+            gatsbyImageData(width: 1800, formats: AUTO)
             title
             id
         }

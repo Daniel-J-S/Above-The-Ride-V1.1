@@ -4,7 +4,7 @@ import { DiscussionEmbed } from 'disqus-react';
 import Seo from '../components/seo';
 import { graphql } from 'gatsby';
 
-const disqusShortname = 'wilsonbikergear';
+const disqusShortname = 'abovetheride';
 
 const BlogDetails = data => (
     <>

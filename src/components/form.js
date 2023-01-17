@@ -11,12 +11,12 @@ function Form(props) {
     });
 
     const encode = (data) => {
-        const {name, email, message} = data
-        return `form-name=Above+The+Ride+Website+Contact+Form&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`
+        const {name, email, message} = data;
+        return `form-name=Above+The+Ride+Website+Contact+Form&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`;
     }
 
     function handleChange(e) {
-        setState({...state, [e.target.name]: e.target.value })
+        setState({...state, [e.target.name]: e.target.value });
     }
 
     async function handleSubmit(e) {
@@ -38,7 +38,7 @@ function Form(props) {
                 formSubmitted: false
             });
             navigate('/');
-            }, 3000)
+        }, 3000);
     }
 
     useEffect(() => {
@@ -46,9 +46,9 @@ function Form(props) {
             setState(prevState => ({
                 ...prevState,
                 message: props.message
-            }))
+            }));
         }
-    }, [props.message])
+    }, [props.message]);
     
     return (
         <>

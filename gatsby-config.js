@@ -1,11 +1,11 @@
-require("dotenv").config();
+require('dotenv').config();
 
 const { spaceId, accessToken, snipcart, googleAnalyticsId, facebookPixelId } = process.env;
 
 module.exports = {
   siteMetadata: {
     title: `Above The Ride`,
-    description: `Above the Ride brings life to your lifestyle.`,
+    description: `"Welcome to Above the Ride, your one-stop shop for all things motorcycling! We offer a range of high-quality t-shirts and accessories designed with the modern rider in mind. Our products are made from durable materials and feature bold designs that capture the spirit of the open road. Whether you're a seasoned pro or a beginner, we have something for everyone. So rev up your engines and visit us today to see our full selection of t-shirts and accessories."`,
     author: `DanielJS`,
   },
   plugins: [
@@ -36,14 +36,14 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-contentful",
+      resolve: 'gatsby-source-contentful',
       options: {
         spaceId,
         accessToken
       }
     },
     {
-      resolve: "gatsby-plugin-snipcartv3",
+      resolve: 'gatsby-plugin-snipcartv3',
       options: {
         apiKey: snipcart,
         autopop: true,
@@ -61,9 +61,9 @@ module.exports = {
         facebookPixel: {
           pixelId: facebookPixelId
         },
-        // Defines the environments where the tracking should be available  - default is ["production"]
+        // Defines the environments where the tracking should be available  - default is ['production']
         environments: ['production', 'development']
       },
     },
   ],
-}
+};

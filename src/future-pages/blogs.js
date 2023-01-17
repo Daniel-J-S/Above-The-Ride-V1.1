@@ -1,3 +1,4 @@
+// TODO: convert to function-based component
 import React from 'react';
 import { Link } from 'gatsby';
 import Seo from '../components/seo';

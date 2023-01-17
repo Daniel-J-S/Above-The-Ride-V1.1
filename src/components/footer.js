@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'gatsby';
-
 import tiktokLogo from '../static/tiktok-brands.svg';
 
 class Footer extends Component {
@@ -47,14 +46,15 @@ class Footer extends Component {
                                <small>©{new Date().getFullYear()} Above the Ride. All rights reserved.</small>
                             </div>
                             <div className="site-info">
-                               <small>Custom Built By <a href="https://danieljs.io" target="_blank" rel="noopener noreferrer">DanielJS</a></small>
+                               {/* TODO: uncomment once site is done <small>Custom Built By <a href="https://danieljs.io" target="_blank" rel="noopener noreferrer">DanielJS</a></small> */}
+                               <small>Custom Built By DanielJS</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </footer>
-        )
+        );
     }
 }
 
-export default Footer
+export default Footer;

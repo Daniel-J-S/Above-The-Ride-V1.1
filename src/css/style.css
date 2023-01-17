@@ -1053,15 +1053,23 @@ span.price {
   margin: 3rem 0 1.2rem;
 }
 
-.slick-slider .slick-list div img {
-  width: 100%;
-}
 
 .slick-slider .slick-list div img {
   width: 100%;
   margin: 0;
-  animation: fadeIn 1.2s linear forwards;
+  animation: fadeIn2 1.5s linear forwards;
 }
+
+.slick-slider .slick-list div {
+  height: 100vh;
+}
+
+/* Trying to hide alt text from showing on page load
+.slick-slider .slick-list div img {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+} */
 
 .slick-slider .slick-list .site-Banner:before {
   content: "";
@@ -1074,7 +1082,6 @@ span.price {
   width: 100%;
   z-index: 1;
   height: 100%;
-  animation: fadeIn 900ms linear forwards;
 }
 
 .site-Banner .Banner-details .sub-title {
@@ -1095,7 +1102,14 @@ span.price {
 }
 
 .site-Banner .Banner-details>div {
-  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.site-Banner .Banner-details>div button {
+  max-width: 10rem;
+  text-align: center;
 }
 
 .store-page .product-main {
@@ -1724,6 +1738,16 @@ span:hover {
   opacity: 0;
 }
 
+@keyframes fadeIn2 {
+  0% {
+    opacity: .3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 
 @keyframes fadeIn {
   0% {
@@ -1732,7 +1756,6 @@ span:hover {
 
   100% {
     opacity: 1;
-    background-color: #808080;
   }
 }
 
@@ -2165,3 +2188,17 @@ h4 {
 a {
   text-decoration: none;
 }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* .site-header, .main-container, .site-footer {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.site-header {
+  position: static;
+} */

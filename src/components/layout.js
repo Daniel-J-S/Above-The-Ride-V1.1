@@ -12,23 +12,23 @@ import {
 import Header from './header';
 import Footer from './footer';
 import CookieBanner from './cookieBanner';
-
-
+import { useLocation } from '@reach/router';
+    
 
 const Layout = ({
     children,
-    location
   }) => {
+
+
     const [isSmallerScreen, setIsSmallerScreen] = useState(false);
     const [isNavVisible, setNavVisibility] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(true);
     const [showItemsCount, setShowItemsCount] = useState(false);
     const [navOpen, setNavOpen] = useState(false);
-    const [isPastTop, setPastTop] = useState(false);
 
     const itemsCount = useRef();
     const handleWheelCallback = useRef();
-    const handleScrollCallback = useRef();
+    const { pathname } = useLocation();
 
     const handleMutations = function (mutations) {
       mutations.forEach(function (mutation) {
@@ -38,7 +38,7 @@ const Layout = ({
           setShowItemsCount(true)
         }
       });
-    }
+    };
 
     if (typeof window !== "undefined") {
       const observer = new MutationObserver(handleMutations);
@@ -63,15 +63,6 @@ const Layout = ({
         setNavOpen(false);
       }
     }
-    const handleScroll = () => {
-      if(window.scrollY > 10) {
-        setNavOpen(false);
-        setPastTop(true);
-      } else {
-        setPastTop(false);
-      }
-    }
-
 
     const handleMediaQueryChange = mediaQuery => {
       if (mediaQuery.matches) {
@@ -103,7 +94,6 @@ const Layout = ({
 
     useEffect(() => {
       handleWheelCallback.current = handleWheel
-      handleScrollCallback.current = handleScroll
     })
   
   
@@ -111,16 +101,8 @@ const Layout = ({
       window.addEventListener('wheel', handleWheelCallback.current);
       return () => {
         window.removeEventListener('wheel', handleWheelCallback.current);
-      }
+      };
     }, []);
-  
-    useEffect(() => {
-      window.addEventListener('scroll', handleScrollCallback.current);
-      return () => {
-        window.removeEventListener('scroll', handleScrollCallback.current);
-      }
-    }, []);
-  
 
   return (
     <StaticQuery
@@ -148,15 +130,13 @@ const Layout = ({
             navOpen={navOpen}
             setNavOpen={setNavOpen}
             itemsCount={itemsCount}
-            isPastTop={isPastTop}
-            location={location}
           />
           <div className="main-container" style={{
               opacity: navOpen ? '.2' : '1',
               minHeight: '100vh',
               backgroundColor: 'white',
               zIndex: 9999,
-              width: '100vw',
+              paddingTop: pathname !== '/' && '10rem',
               animation: navOpen ? 'fadeOut 500ms ease-out backwards':'none'
             }}>
             <main>

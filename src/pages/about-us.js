@@ -1,14 +1,11 @@
 import React from 'react';
 import Seo from '../components/seo';
-import Banner from '../components/banner';
 import { graphql } from 'gatsby';
 
 function AboutUs({
         data: {
-            aboutUs,
-            bannerData
+            aboutUs
         },
-        location
     }) {
         return ( 
             <>
@@ -16,9 +13,7 @@ function AboutUs({
                 title="About" 
                 keywords={[`about us`, `our story`, `motorcyclist apparel`, `t-shirts`, `hoodies`]} 
                 description="We bring life back to the motorcyclist lifestyle"
-                location={location}
             />
-            <Banner isIndex={false} bannerData={bannerData} />
             <div className="site-About">
                 <div className="container">
                     <div className="row">
@@ -47,16 +42,6 @@ query AboutPageQuery {
         }
       }
       name
-    }
-    bannerData: contentfulHeaderBanner(page: {eq: "about us"}) {
-        title
-        subHeading
-        buttonLink
-        images {
-            gatsbyImageData(width: 1800, placeholder: BLURRED, formats: AUTO)
-            title
-            id
-        }
     }
 }`;
 
